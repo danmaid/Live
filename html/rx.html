@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rx Sandbox</title>
+    <!-- include external library -->
+    <link rel="stylesheet" href="css/lib/material.min.css">
+</head>
+
+<style scoped>
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    main {
+        height: 100%;
+        width: 100%;
+    }
+    canvas {
+        height: 100%;
+        width: 100%;
+    }
+    .url-box {
+        width: 500px;
+    }
+</style>
+
+<body>
+    <main role="main">
+        <!--<div class="url-box mdl-textfield mdl-js-textfield">
+            <input type="text" id="url" class="mdl-textfield__input" />
+            <label for="url" class="mdl-textfield__label">SSE URL</label>
+        </div>
+        <button id="add" class="mdl-button mdl-js-button mdl-js-ripple-effect">Add</button>-->
+        <canvas id="q"></canvas>
+    </main>
+
+    <!-- include external library -->
+    <script src="scripts/lib/rx.all.min.js"></script>
+    <script src="scripts/lib/rx.dom.min.js"></script>
+    <script src="scripts/lib/material.min.js"></script>
+
+    <!-- original scripts -->
+    <script src="scripts/rxtest.js"></script>
+
+</body>
+
+</html>

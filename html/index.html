@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+</head>
+
+<body>
+    <!--<header role="banner">
+        <h1>ロゴ</h1>
+    </header>
+    <nav role="navigation">
+        グローバルナビ
+    </nav>-->
+    <main role="main">
+        <!-- main with editor -->
+        <!-- ビュー基準位置(ビュー自体を相対的に配置するため) -->
+        <div class="view-container">
+            <div id="mainview" class="main-view">
+                <div class="contents-offset">
+                    <div class="main-contents">
+                        コンテンツ１
+                    </div>
+                </div>
+                <canvas id="canvas" class="canvas">
+                    キャンバス
+                </canvas>
+                <div id="target" class="layer no-1">
+                    レイヤー１
+                </div>
+                <div class="layer no-2">
+                    レイヤー２
+                </div>
+            </div>
+        </div>
+
+        <i id="tool-link" class="tool-button fa fa-link" aria-hidden="true"></i>
+        <a href="#" style="height: 100px; width: 100px; display: block; background: black;"></a>
+
+        <!--<div id="navview" class="navview">
+        </div>-->
+
+    </main>
+    <!--<aside role="complementary">
+        サイドコンテンツ
+    </aside>
+    <footer role="contentinfo">
+        フッター
+    </footer>-->
+    <!-- include external library -->
+    <script src="scripts/lib/riot+compiler.js"></script>
+    <!-- original scripts -->
+    <script src="scripts/main.js"></script>
+    <script type="text/javascript">
+        var toolLink = document.getElementById("tool-link");
+        toolLink.addEventListener("click", function () {
+            var target = document.getElementById("target");
+            var canvas = document.getElementById("canvas");
+            var instance = new addLink(canvas, target);
+        });
+    </script>
+
+</body>
+
+</html>

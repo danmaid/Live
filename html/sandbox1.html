@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+
+<body>
+    <!--<header role="banner">
+        <h1>ロゴ</h1>
+    </header>
+    <nav role="navigation">
+        グローバルナビ
+    </nav>-->
+    <main role="main">
+        <!-- main with editor -->
+        <!--<div id="mainview" class="mainview">
+            メインコンテンツ
+            <canvas id="canvas" class="canvas">
+                キャンバス
+            </canvas>
+            <div id="target" class="layer no-1">
+                レイヤー１
+            </div>
+            <div class="layer no-2">
+                レイヤー２
+            </div>
+        </div>
+        <div class="layout-spacer"></div>
+        <i id="tool-link" class="tool-button fa fa-link" aria-hidden="true"></i>
+        <a href="#" style="height: 100px; width: 100px; display: block; background: black;"></a>-->
+        <!--<div id="navview" class="navview">
+        </div>-->
+
+        <!-- background editor -->
+        <!--<div id="mainView" class="mainView">
+            <style>
+                .container {
+                    display: flex;
+                }
+                .item {
+                    width: calc(100% / 3);
+                    height: calc(100% / 3);
+                }
+            </style>
+            <div class="container">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+                <div class="item">7</div>
+                <div class="item">8</div>
+                <div class="item">9</div>
+            </div>
+        </div>-->
+
+        <!-- 座標系テスト -->
+        <style scoped>
+            .box {
+                border: 1px solid black;
+                background-color: hotpink;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .r1 {
+                position: relative;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .a1 {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 600px;
+                height: 400px;
+                overflow: hidden;
+            }
+            
+            .r2 {
+                position: relative;
+                top: 50px;
+                left: 500px;
+            }
+            
+            .a2 {
+                position: absolute;
+                top: -30px;
+                left: -550px;
+            }
+        </style>
+        <div class="r1">r1(10,10) ビュー基準位置
+            <div id="view" draggable="true" class="box a1">a1(10,10) ビュー
+                <div id="offset" class="box r2">r2(50,500) コンテンツオフセット
+                    <div class="box a2">a2(-30,-550) コンテンツ</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!--<aside role="complementary">
+        サイドコンテンツ
+    </aside>
+    <footer role="contentinfo">
+        フッター
+    </footer>-->
+    <!-- include external library -->
+    <script src="scripts/lib/riot+compiler.js"></script>
+    <script src="scripts/lib/rx.all.min.js"></script>
+    <!-- original scripts -->
+    <script src="scripts/main.js"></script>
+    <script type="text/javascript">
+        var view = document.getElementById("view");
+        var offset = document.getElementById("offset");
+        var X = 0;
+        var Y = 0;
+        view.addEventListener("dragenter", function(e) {
+            X = e.offsetX;
+            Y = e.offsetY;
+            console.log("start:" + (e.offsetX - X) + "," + (e.offsetY - Y));
+        });
+        view.addEventListener("drag", function (e) {
+            console.log((e.offsetX - X) + "," + (e.offsetY - Y));
+        });
+        view.addEventListener("dragend", function(e) {
+            console.log("end:" + (e.offsetX - X) + "," + (e.offsetY - Y));
+            offset.style.top = (e.offsetY - Y) + "px";
+            offset.style.left = (e.offsetX - X) + "px";
+            console.log("offset:" + offset.offsetLeft + "," + offset.offsetTop);
+        })
+    </script>
+
+</body>
+
+</html>

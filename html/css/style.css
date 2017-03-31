@@ -1,0 +1,101 @@
+@charset "UTF-8";
+body {
+  -webkit-text-size-adjust: 100%; }
+
+/**
+ * レイアウト
+ */
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0; }
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+/**
+ * ビュー
+ */
+.view-container {
+  position: relative;
+  height: calc(50% - (2em * 2) - (1px * 2));
+  width: calc(100% - (2em * 2) - (1px * 2));
+  margin: 2em; }
+
+.main-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  overflow: hidden;
+  height: 100%;
+  width: 100%; }
+
+.navview {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;
+  border: 1px solid black;
+  height: 90px;
+  width: 160px; }
+
+/**
+ * コンテンツ
+ */
+.contents-offset {
+  position: relative;
+  top: 0;
+  left: 0; }
+
+.main-contents {
+  position: absolute;
+  top: 50px;
+  left: 50px; }
+
+/**
+ * レイヤー
+ */
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; }
+  .layer.no-1 {
+    z-index: 100;
+    border-color: #673AB7;
+    background-color: rgba(103, 58, 183, 0.2); }
+  .layer.no-2 {
+    z-index: 200;
+    border-color: #E91E63;
+    background-color: rgba(233, 30, 99, 0.2); }
+
+/**
+ * キャンバス
+ */
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; }
+
+/**
+ * 要素
+ */
+.link {
+  display: block;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 9999; }
+
+.tool-button {
+  margin-left: 2em;
+  padding: 0.2em;
+  border: solid 1px black; }
+
+/*# sourceMappingURL=style.css.map */
