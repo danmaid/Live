@@ -1,12 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
-	"os"
+	"time"
 
 	_ "net/http/pprof"
 )
@@ -78,15 +77,15 @@ func main() {
 
 	broker := NewServer()
 	go func() {
-		scanner := bufio.NewScanner(os.Stdin)
-		for scanner.Scan() {
-			fmt.Println(scanner.Text())
-			broker.Push <- []byte(scanner.Text())
-		}
-		// for {
-		// 	time.Sleep(time.Microsecond * 100)
-		// 	broker.Push <- []byte(time.Now().String())
+		// scanner := bufio.NewScanner(os.Stdin)
+		// for scanner.Scan() {
+		// 	fmt.Println(scanner.Text())
+		// 	broker.Push <- []byte(scanner.Text())
 		// }
+		for {
+			time.Sleep(time.Second * 2)
+			broker.Push <- []byte(time.Now().String())
+		}
 	}()
 	http.Handle("/sse", broker)
 	http.Handle("/", http.FileServer(http.Dir(".")))

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 
 <body>
@@ -40,7 +40,12 @@
         </div>
 
         <i id="tool-link" class="tool-button fa fa-link" aria-hidden="true"></i>
+        <button id="tool-add" class="tool-button fa fa-plus" aria-hidden="true"></button>
         <a href="#" style="height: 100px; width: 100px; display: block; background: black;"></a>
+
+        <div id="tail-view" style="width: 100%; height: 100px; overflow: scroll;"></div>
+        <div id="watch-view" style="width: 100%; height: 100px; overflow: hidden;"></div>
+        <div id="matrix-view" style="width: 100%; height: 200px; overflow: hidden;"></div>
 
         <!--<div id="navview" class="navview">
         </div>-->
@@ -54,8 +59,22 @@
     </footer>-->
     <!-- include external library -->
     <script src="scripts/lib/riot+compiler.js"></script>
+    <script src="scripts/lib/rx.all.min.js"></script>
+    <script src="scripts/lib/rx.dom.min.js"></script>
+    <script src="scripts/lib/raphael-2.1.4.min.js"></script>
+    <script src="scripts/lib/justgage.js"></script>
+
     <!-- original scripts -->
+    <script type="text/javascript">
+        var toolAdd = document.getElementById("tool-add");
+        var addMouseDownStream = Rx.Observable.fromEvent(toolAdd, 'mousedown');
+        var addMouseUpStream = Rx.Observable.fromEvent(toolAdd, 'mouseup');
+        var addMouseMoveStream = Rx.Observable.fromEvent(toolAdd, 'mousemove');
+    </script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/tailf.js"></script>
+    <script src="scripts/watch.js"></script>
+    <script src="scripts/matrixcode.js"></script>
     <script type="text/javascript">
         var toolLink = document.getElementById("tool-link");
         toolLink.addEventListener("click", function () {
@@ -63,6 +82,17 @@
             var canvas = document.getElementById("canvas");
             var instance = new addLink(canvas, target);
         });
+    </script>
+    <script type="text/javascript">
+        var responseStream = Rx.DOM.fromEventSource('http://localhost:6969/sse');
+        var tailView = document.getElementById('tail-view');
+        tailf(responseStream, tailView);
+
+        var watchView = document.getElementById('watch-view');
+        watch(responseStream, watchView);
+
+        var matrixView = document.getElementById('matrix-view');
+        matrixCode(responseStream, matrixView);
     </script>
 
 </body>

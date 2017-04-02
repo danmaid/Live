@@ -91,3 +91,6 @@ var addLink = (function () {
     return addLink;
 })();
 
+var addObject = function() {
+
+};
