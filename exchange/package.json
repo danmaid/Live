@@ -1,0 +1,16 @@
+{
+  "name": "exchange",
+  "version": "0.0.1",
+  "description": "Live exchange",
+  "main": "exchange.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "danmaid",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "rx": "^4.1.0",
+    "rx-dom": "^7.0.3"
+  }
+}

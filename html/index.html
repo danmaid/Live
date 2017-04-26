@@ -43,7 +43,17 @@
         <button id="tool-add" class="tool-button fa fa-plus" aria-hidden="true"></button>
         <a href="#" style="height: 100px; width: 100px; display: block; background: black;"></a>
 
-        <div id="tail-view" style="width: 100%; height: 100px; overflow: scroll;"></div>
+        <!--<div id="tail-view" style="width: 100%; height: 100px; overflow: scroll;"></div>-->
+        <style scoped>
+            #tail-view {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+        </style>
+        <div id="tail-view"></div>
         <div id="watch-view" style="width: 100%; height: 100px; overflow: hidden;"></div>
         <div id="matrix-view" style="width: 100%; height: 200px; overflow: hidden;"></div>
 
@@ -85,8 +95,10 @@
     </script>
     <script type="text/javascript">
         var responseStream = Rx.DOM.fromEventSource('http://localhost:6969/sse');
+
+        var randomStream = Rx.Observable.interval(1000).map(t => String.fromCharCode(3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33));
         var tailView = document.getElementById('tail-view');
-        tailf(responseStream, tailView);
+        tailfLimit(randomStream, tailView);
 
         var watchView = document.getElementById('watch-view');
         watch(responseStream, watchView);

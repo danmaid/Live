@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        
+        a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main">
+        <ul>
+            <li><a href="#gauge1">gauge1</a></li>
+        </ul>
+        <component></component>
+        <fab1 style="position: absolute; top: 100px; left: 100px;">
+            <yield to="menu">
+                <button class="menu"><i class="fa fa-bars"></i></button>
+            </yield>
+            <button tooltip="edit"><i class="fa fa-pencil"></i></button>
+            <button tooltip="settings"><i class="fa fa-gear"></i></button>
+        </fab1>
+    </main>
+
+    <script src="scripts/lib/riot+compiler.min.js"></script>
+    <script src="scripts/lib/route.min.js"></script>
+    <script src="scripts/lib/rx.all.min.js"></script>
+    <script src="tags/fab1.tag" type="riot/tag"></script>
+    <script>riot.mount('fab1');</script>
+    <script>
+        // サンプルデータソース
+        // 基礎データ 1 ～ 10, 2秒ごと
+        var sourceBase = Rx.Observable.generateWithRelativeTime(
+            1,
+            function (x) { return x <= 10; },
+            function (x) { return x + 1; },
+            function (x) { return x; },
+            function (x) { return 2000; }
+        );
+        // 0 ～ 100 のランダムデータ
+        var sourceRandomPercent = sourceBase.map(function (x) {
+            return Math.floor(Math.random() * (101 - 1) + 1);
+        });
+
+        route('/gauge1', function () {
+            riot.compile('tags/gauge1.tag', function () {
+                var tags = riot.mount('component', 'gauge1');
+                console.debug(tags);
+                sourceRandomPercent.subscribe(function (tag, x) {
+                    console.debug('data', x);
+                    console.debug(tag)
+                    tag.update({ value: x })
+                }.bind(null, tags[0]))
+            });
+        });
+        route.start(true);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #58ACFA;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main">
+        <div id="view"></div>
+    </main>
+
+    <!-- include external library -->
+    <script src="rx.all.min.js"></script>
+    <script src="rx.dom.min.js"></script>
+
+    <!-- original scripts -->
+    <script type="text/javascript">
+        function tailf(stream, targetDom) {
+            stream.subscribe(function (response) {
+                let line = document.createElement('div');
+                line.innerText = response;
+                targetDom.appendChild(line);
+                targetDom.scrollTop = targetDom.scrollHeight;
+            });
+        }
+        var responseStream = Rx.DOM.fromEventSource('/sse');
+        var view = document.getElementById('view');
+        tailf(responseStream, view);
+    </script>
+</body>
+
+</html>

@@ -1,3 +1,4 @@
 /tool/
 .vscode/
 debug
+node_modules/
