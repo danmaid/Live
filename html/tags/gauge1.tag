@@ -8,7 +8,11 @@
         </div>
     </div>
 
-    <style scoped>
+    <style>
+         :scope {
+            position: absolute;
+        }
+        
         .container {
             width: 400px;
             height: 200px;

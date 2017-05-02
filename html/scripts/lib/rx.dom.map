@@ -1,0 +1,791 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+
+
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/frameworks-19e26a1cefb5f1e92203a9468134dbf46b5a5308aeeeee09c96b32fec8c8b044.css" integrity="sha256-GeJqHO+18ekiA6lGgTTb9GtaUwiu7u4JyWsy/sjIsEQ=" media="all" rel="stylesheet" />
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-98aa0fa863347665d25588a7ec9dce42442d934365abe26a706a8c067cb24954.css" integrity="sha256-mKoPqGM0dmXSVYin7J3OQkQtk0Nlq+JqcGqMBnyySVQ=" media="all" rel="stylesheet" />
+  
+  
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/site-1da8b9f73abeb68e6a54d0f514085224fe9e7325fd664eacacb38bebe10b9eab.css" integrity="sha256-Hai59zq+to5qVND1FAhSJP6ecyX9Zk6srLOL6+ELnqs=" media="all" rel="stylesheet" />
+  
+
+  <meta name="viewport" content="width=device-width">
+  
+  <title>RxJS-DOM/rx.dom.map at master · Reactive-Extensions/RxJS-DOM · GitHub</title>
+  <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+  <meta property="fb:app_id" content="1401488693436528">
+
+    
+    <meta content="https://avatars3.githubusercontent.com/u/984368?v=3&amp;s=400" property="og:image" /><meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="Reactive-Extensions/RxJS-DOM" property="og:title" /><meta content="https://github.com/Reactive-Extensions/RxJS-DOM" property="og:url" /><meta content="RxJS-DOM - HTML DOM Bindings for the Reactive Extensions for JavaScript" property="og:description" />
+
+  <link rel="assets" href="https://assets-cdn.github.com/">
+  
+  <meta name="pjax-timeout" content="1000">
+  
+  <meta name="request-id" content="F2DA:27EFA:2F4D478:4C0F4AA:58C1D9FA" data-pjax-transient>
+  
+
+  <meta name="selected-link" value="repo_source" data-pjax-transient>
+
+  <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="F2DA:27EFA:2F4D478:4C0F4AA:58C1D9FA" name="octolytics-dimension-request_id" />
+<meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" name="analytics-location" />
+
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+  
+  
+      <meta name="hostname" content="github.com">
+  <meta name="user-login" content="">
+
+      <meta name="expected-hostname" content="github.com">
+    <meta name="js-proxy-site-detection-payload" content="Mzg0N2IxMjJjNWFlZjhmZDNlYWUxMWQwN2UyYTU4MTYzNjkyZjQ3OTU2NWE1MzNiZjk4Yzk3Y2FjZTU2Y2JiNHx7InJlbW90ZV9hZGRyZXNzIjoiMjEwLjE3MC40NS4xODgiLCJyZXF1ZXN0X2lkIjoiRjJEQToyN0VGQToyRjRENDc4OjRDMEY0QUE6NThDMUQ5RkEiLCJ0aW1lc3RhbXAiOjE0ODkwOTkyNjQsImhvc3QiOiJnaXRodWIuY29tIn0=">
+
+
+  <meta name="html-safe-nonce" content="3a248c3677a5a8baaf95f0f0e35c87b7b0569212">
+
+  <meta http-equiv="x-pjax-version" content="ece4cea29e6dbefaadc9cc0f4b26a2ae">
+  
+
+    
+  <meta name="description" content="RxJS-DOM - HTML DOM Bindings for the Reactive Extensions for JavaScript">
+  <meta name="go-import" content="github.com/Reactive-Extensions/RxJS-DOM git https://github.com/Reactive-Extensions/RxJS-DOM.git">
+
+  <meta content="984368" name="octolytics-dimension-user_id" /><meta content="Reactive-Extensions" name="octolytics-dimension-user_login" /><meta content="3206202" name="octolytics-dimension-repository_id" /><meta content="Reactive-Extensions/RxJS-DOM" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="3206202" name="octolytics-dimension-repository_network_root_id" /><meta content="Reactive-Extensions/RxJS-DOM" name="octolytics-dimension-repository_network_root_nwo" />
+      <link href="https://github.com/Reactive-Extensions/RxJS-DOM/commits/master.atom" rel="alternate" title="Recent Commits to RxJS-DOM:master" type="application/atom+xml">
+
+
+    <link rel="canonical" href="https://github.com/Reactive-Extensions/RxJS-DOM/blob/master/dist/rx.dom.map" data-pjax-transient>
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
+  <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+<meta name="theme-color" content="#1e2327">
+
+
+  <meta name="u2f-support" content="true">
+
+  </head>
+
+  <body class="logged-out env-production page-blob">
+    
+
+  <div class="position-relative js-header-wrapper ">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+
+    
+    
+    
+
+
+
+          <header class="site-header js-details-container Details" role="banner">
+  <div class="container-responsive">
+    <a class="header-logo-invertocat" href="https://github.com/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+
+    <button class="btn-link float-right site-header-toggle js-details-target" type="button" aria-label="Toggle navigation">
+      <svg aria-hidden="true" class="octicon octicon-three-bars" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/></svg>
+    </button>
+
+    <div class="site-header-menu">
+      <nav class="site-header-nav">
+          <a href="/features" class="js-selected-navigation-item nav-item" data-ga-click="Header, click, Nav menu - item:features" data-selected-links="/features /features">
+            Features
+</a>          <a href="/explore" class="js-selected-navigation-item nav-item" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship /showcases /explore">
+            Explore
+</a>        <a href="/pricing" class="js-selected-navigation-item nav-item" data-ga-click="Header, click, Nav menu - item:pricing" data-selected-links="/pricing /pricing">
+          Pricing
+</a>      </nav>
+
+      <div class="site-header-actions">
+          <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
+  <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/Reactive-Extensions/RxJS-DOM/search" class="js-site-search-form" data-scoped-search-url="/Reactive-Extensions/RxJS-DOM/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+    <label class="form-control header-search-wrapper js-chromeless-input-container">
+      <div class="header-search-scope">This repository</div>
+      <input type="text"
+        class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable"
+        data-hotkey="s"
+        name="q"
+        placeholder="Search"
+        aria-label="Search this repository"
+        data-unscoped-placeholder="Search GitHub"
+        data-scoped-placeholder="Search"
+        autocapitalize="off">
+    </label>
+</form></div>
+
+
+          <a class="text-bold site-header-link" href="/login?return_to=%2FReactive-Extensions%2FRxJS-DOM%2Fblob%2Fmaster%2Fdist%2Frx.dom.map" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+            <span class="text-gray">or</span>
+            <a class="text-bold site-header-link" href="/join?source=header-repo" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  </div>
+
+  <div id="start-of-content" class="accessibility-aid"></div>
+
+    <div id="js-flash-container">
+</div>
+
+
+
+  <div role="main">
+      <div itemscope itemtype="http://schema.org/SoftwareSourceCode">
+    <div id="js-repo-pjax-container" data-pjax-container>
+        
+
+
+
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+
+
+    <ul class="pagehead-actions">
+  <li>
+      <a href="/login?return_to=%2FReactive-Extensions%2FRxJS-DOM"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"/></svg>
+    Watch
+  </a>
+  <a class="social-count" href="/Reactive-Extensions/RxJS-DOM/watchers"
+     aria-label="22 users are watching this repository">
+    22
+  </a>
+
+  </li>
+
+  <li>
+      <a href="/login?return_to=%2FReactive-Extensions%2FRxJS-DOM"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to star a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"/></svg>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="/Reactive-Extensions/RxJS-DOM/stargazers"
+      aria-label="335 users starred this repository">
+      335
+    </a>
+
+  </li>
+
+  <li>
+      <a href="/login?return_to=%2FReactive-Extensions%2FRxJS-DOM"
+        class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+        aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <svg aria-hidden="true" class="octicon octicon-repo-forked" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"/></svg>
+        Fork
+      </a>
+
+    <a href="/Reactive-Extensions/RxJS-DOM/network" class="social-count"
+       aria-label="86 users forked this repository">
+      86
+    </a>
+  </li>
+</ul>
+
+    <h1 class="public ">
+  <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"/></svg>
+  <span class="author" itemprop="author"><a href="/Reactive-Extensions" class="url fn" rel="author">Reactive-Extensions</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a href="/Reactive-Extensions/RxJS-DOM" data-pjax="#js-repo-pjax-container">RxJS-DOM</a></strong>
+
+</h1>
+
+  </div>
+  <div class="container">
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax"
+     itemscope
+     itemtype="http://schema.org/BreadcrumbList"
+     role="navigation"
+     data-pjax="#js-repo-pjax-container">
+
+  <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="/Reactive-Extensions/RxJS-DOM" class="js-selected-navigation-item selected reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /Reactive-Extensions/RxJS-DOM" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="/Reactive-Extensions/RxJS-DOM/issues" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /Reactive-Extensions/RxJS-DOM/issues" itemprop="url">
+        <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"/></svg>
+        <span itemprop="name">Issues</span>
+        <span class="counter">17</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="/Reactive-Extensions/RxJS-DOM/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /Reactive-Extensions/RxJS-DOM/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"/></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="counter">4</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+  <a href="/Reactive-Extensions/RxJS-DOM/projects" class="js-selected-navigation-item reponav-item" data-selected-links="repo_projects new_repo_project repo_project /Reactive-Extensions/RxJS-DOM/projects">
+    <svg aria-hidden="true" class="octicon octicon-project" height="16" version="1.1" viewBox="0 0 15 16" width="15"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"/></svg>
+    Projects
+    <span class="counter">0</span>
+</a>
+    <a href="/Reactive-Extensions/RxJS-DOM/wiki" class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /Reactive-Extensions/RxJS-DOM/wiki">
+      <svg aria-hidden="true" class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"/></svg>
+      Wiki
+</a>
+
+  <a href="/Reactive-Extensions/RxJS-DOM/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="pulse /Reactive-Extensions/RxJS-DOM/pulse">
+    <svg aria-hidden="true" class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0v2h3.6l.9-1.8.9 5.4L9 8.5l1.6 1.5H14V8z"/></svg>
+    Pulse
+</a>
+  <a href="/Reactive-Extensions/RxJS-DOM/graphs" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors /Reactive-Extensions/RxJS-DOM/graphs">
+    <svg aria-hidden="true" class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"/></svg>
+    Graphs
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+
+<a href="/Reactive-Extensions/RxJS-DOM/blob/35271e7ddd7e68838d181beae3cee696b657f7f4/dist/rx.dom.map" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+<!-- blob contrib key: blob_contributors:v21:6cd0237f919198a51129a7e660c2842d -->
+
+<div class="file-navigation js-zeroclipboard-container">
+  
+<div class="select-menu branch-select-menu js-menu-container js-select-menu float-left">
+  <button class="btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w"
+    
+    type="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <i>Branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </button>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"/></svg>
+        <span class="select-menu-title">Switch branches/tags</span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="form-control js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/Reactive-Extensions/RxJS-DOM/blob/gh-pages/dist/rx.dom.map"
+               data-name="gh-pages"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text">
+                gh-pages
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open selected"
+               href="/Reactive-Extensions/RxJS-DOM/blob/master/dist/rx.dom.map"
+               data-name="master"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text">
+                master
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v7.0.3/dist/rx.dom.map"
+              data-name="v7.0.3"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v7.0.3">
+                v7.0.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v7.0.2/dist/rx.dom.map"
+              data-name="v7.0.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v7.0.2">
+                v7.0.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v7.0.1/dist/rx.dom.map"
+              data-name="v7.0.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v7.0.1">
+                v7.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v7.0.0/dist/rx.dom.map"
+              data-name="v7.0.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v7.0.0">
+                v7.0.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v6.0.0/dist/rx.dom.map"
+              data-name="v6.0.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v6.0.0">
+                v6.0.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v5.0.5/dist/rx.dom.map"
+              data-name="v5.0.5"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v5.0.5">
+                v5.0.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v5.0.4/dist/rx.dom.map"
+              data-name="v5.0.4"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v5.0.4">
+                v5.0.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v5.0.3/dist/rx.dom.map"
+              data-name="v5.0.3"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v5.0.3">
+                v5.0.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v5.0.2/dist/rx.dom.map"
+              data-name="v5.0.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v5.0.2">
+                v5.0.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v5.0.1/dist/rx.dom.map"
+              data-name="v5.0.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v5.0.1">
+                v5.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v5.0.0/dist/rx.dom.map"
+              data-name="v5.0.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v5.0.0">
+                v5.0.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v4.0.4/dist/rx.dom.map"
+              data-name="v4.0.4"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v4.0.4">
+                v4.0.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v4.0.3/dist/rx.dom.map"
+              data-name="v4.0.3"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v4.0.3">
+                v4.0.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v4.0.2/dist/rx.dom.map"
+              data-name="v4.0.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v4.0.2">
+                v4.0.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v4.0.1/dist/rx.dom.map"
+              data-name="v4.0.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v4.0.1">
+                v4.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v4.0.0/dist/rx.dom.map"
+              data-name="v4.0.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v4.0.0">
+                v4.0.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v3.0.2/dist/rx.dom.map"
+              data-name="v3.0.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v3.0.2">
+                v3.0.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v3.0.1/dist/rx.dom.map"
+              data-name="v3.0.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v3.0.1">
+                v3.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v3.0.0/dist/rx.dom.map"
+              data-name="v3.0.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v3.0.0">
+                v3.0.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0.8/dist/rx.dom.map"
+              data-name="v2.0.8"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0.8">
+                v2.0.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0.6/dist/rx.dom.map"
+              data-name="v2.0.6"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0.6">
+                v2.0.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0.5/dist/rx.dom.map"
+              data-name="v2.0.5"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0.5">
+                v2.0.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0.4/dist/rx.dom.map"
+              data-name="v2.0.4"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0.4">
+                v2.0.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0.3/dist/rx.dom.map"
+              data-name="v2.0.3"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0.3">
+                v2.0.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0.2/dist/rx.dom.map"
+              data-name="v2.0.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0.2">
+                v2.0.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0.1/dist/rx.dom.map"
+              data-name="v2.0.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0.1">
+                v2.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/Reactive-Extensions/RxJS-DOM/tree/v2.0/dist/rx.dom.map"
+              data-name="v2.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"/></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v2.0">
+                v2.0
+              </span>
+            </a>
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="BtnGroup float-right">
+    <a href="/Reactive-Extensions/RxJS-DOM/find/master"
+          class="js-pjax-capture-input btn btn-sm BtnGroup-item"
+          data-pjax
+          data-hotkey="t">
+      Find file
+    </a>
+    <button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm BtnGroup-item tooltipped tooltipped-s" data-copied-hint="Copied!" type="button">Copy path</button>
+  </div>
+  <div class="breadcrumb js-zeroclipboard-target">
+    <span class="repo-root js-repo-root"><span class="js-path-segment"><a href="/Reactive-Extensions/RxJS-DOM"><span>RxJS-DOM</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a href="/Reactive-Extensions/RxJS-DOM/tree/master/dist"><span>dist</span></a></span><span class="separator">/</span><strong class="final-path">rx.dom.map</strong>
+  </div>
+</div>
+
+<include-fragment class="commit-tease" src="/Reactive-Extensions/RxJS-DOM/contributors/master/dist/rx.dom.map">
+  <div>
+    Fetching contributors&hellip;
+  </div>
+
+  <div class="commit-tease-contributors">
+    <img alt="" class="loader-loading float-left" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32-EAF2F5.gif" width="16" />
+    <span class="loader-error">Cannot retrieve contributors at this time</span>
+  </div>
+</include-fragment>
+
+<div class="file">
+  <div class="file-header">
+  <div class="file-actions">
+
+    <div class="BtnGroup">
+      <a href="/Reactive-Extensions/RxJS-DOM/raw/master/dist/rx.dom.map" class="btn btn-sm BtnGroup-item" id="raw-url">Raw</a>
+        <a href="/Reactive-Extensions/RxJS-DOM/blame/master/dist/rx.dom.map" class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b">Blame</a>
+      <a href="/Reactive-Extensions/RxJS-DOM/commits/master/dist/rx.dom.map" class="btn btn-sm BtnGroup-item" rel="nofollow">History</a>
+    </div>
+
+        <a class="btn-octicon tooltipped tooltipped-nw"
+           href="https://windows.github.com"
+           aria-label="Open this file in GitHub Desktop"
+           data-ga-click="Repository, open with desktop, type:windows">
+            <svg aria-hidden="true" class="octicon octicon-device-desktop" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M15 2H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5.34c-.25.61-.86 1.39-2.34 2h8c-1.48-.61-2.09-1.39-2.34-2H15c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 9H1V3h14v8z"/></svg>
+        </a>
+
+        <button type="button" class="btn-octicon disabled tooltipped tooltipped-nw"
+          aria-label="You must be signed in to make or propose changes">
+          <svg aria-hidden="true" class="octicon octicon-pencil" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/></svg>
+        </button>
+        <button type="button" class="btn-octicon btn-octicon-danger disabled tooltipped tooltipped-nw"
+          aria-label="You must be signed in to make or propose changes">
+          <svg aria-hidden="true" class="octicon octicon-trashcan" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
+        </button>
+  </div>
+
+  <div class="file-info">
+      1 lines (1 sloc)
+      <span class="file-info-divider"></span>
+    25.6 KB
+  </div>
+</div>
+
+  
+
+  <div itemprop="text" class="blob-wrapper data type-text">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="2">
+      <tr>
+        <td id="L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="LC1" class="blob-code blob-code-inner js-file-line">{&quot;version&quot;:3,&quot;file&quot;:&quot;rx.dom.min.js&quot;,&quot;sources&quot;:[&quot;rx.dom.js&quot;],&quot;names&quot;:[&quot;factory&quot;,&quot;checkGlobal&quot;,&quot;value&quot;,&quot;Object&quot;,&quot;objectTypes&quot;,&quot;function&quot;,&quot;object&quot;,&quot;freeExports&quot;,&quot;exports&quot;,&quot;nodeType&quot;,&quot;freeModule&quot;,&quot;module&quot;,&quot;freeGlobal&quot;,&quot;global&quot;,&quot;freeSelf&quot;,&quot;self&quot;,&quot;freeWindow&quot;,&quot;window&quot;,&quot;thisGlobal&quot;,&quot;this&quot;,&quot;root&quot;,&quot;Function&quot;,&quot;define&quot;,&quot;amd&quot;,&quot;Rx&quot;,&quot;require&quot;,&quot;call&quot;,&quot;exp&quot;,&quot;undefined&quot;,&quot;tryCatcherGen&quot;,&quot;tryCatchTarget&quot;,&quot;apply&quot;,&quot;arguments&quot;,&quot;e&quot;,&quot;errorObj&quot;,&quot;tryCatch&quot;,&quot;fn&quot;,&quot;isFunction&quot;,&quot;TypeError&quot;,&quot;CreateListenerDisposable&quot;,&quot;element&quot;,&quot;name&quot;,&quot;handler&quot;,&quot;useCapture&quot;,&quot;_e&quot;,&quot;_n&quot;,&quot;_fn&quot;,&quot;_u&quot;,&quot;addEventListener&quot;,&quot;isDisposed&quot;,&quot;createListener&quot;,&quot;Error&quot;,&quot;createEventListener&quot;,&quot;el&quot;,&quot;eventName&quot;,&quot;disposables&quot;,&quot;CompositeDisposable&quot;,&quot;toStr&quot;,&quot;prototype&quot;,&quot;toString&quot;,&quot;i&quot;,&quot;len&quot;,&quot;length&quot;,&quot;add&quot;,&quot;item&quot;,&quot;getXMLHttpRequest&quot;,&quot;XMLHttpRequest&quot;,&quot;progId&quot;,&quot;progIds&quot;,&quot;ActiveXObject&quot;,&quot;getCORSRequest&quot;,&quot;xhr&quot;,&quot;withCredentials&quot;,&quot;XDomainRequest&quot;,&quot;normalizeAjaxSuccessEvent&quot;,&quot;settings&quot;,&quot;response&quot;,&quot;responseText&quot;,&quot;responseType&quot;,&quot;JSON&quot;,&quot;parse&quot;,&quot;status&quot;,&quot;originalEvent&quot;,&quot;normalizeAjaxErrorEvent&quot;,&quot;type&quot;,&quot;socketClose&quot;,&quot;socket&quot;,&quot;closingObserver&quot;,&quot;code&quot;,&quot;reason&quot;,&quot;onNext&quot;,&quot;onCompleted&quot;,&quot;close&quot;,&quot;getMutationObserver&quot;,&quot;next&quot;,&quot;M&quot;,&quot;MutationObserver&quot;,&quot;WebKitMutationObserver&quot;,&quot;ObservableBase&quot;,&quot;Observable&quot;,&quot;AbstractObserver&quot;,&quot;internals&quot;,&quot;Disposable&quot;,&quot;Observer&quot;,&quot;create&quot;,&quot;BinaryDisposable&quot;,&quot;SingleAssignmentDisposable&quot;,&quot;Subject&quot;,&quot;Scheduler&quot;,&quot;dom&quot;,&quot;DOM&quot;,&quot;hasOwnProperty&quot;,&quot;helpers&quot;,&quot;noop&quot;,&quot;inherits&quot;,&quot;dispose&quot;,&quot;removeEventListener&quot;,&quot;FromEventObservable&quot;,&quot;__super__&quot;,&quot;selector&quot;,&quot;_uc&quot;,&quot;createHandler&quot;,&quot;o&quot;,&quot;results&quot;,&quot;onError&quot;,&quot;subscribeCore&quot;,&quot;fromEvent&quot;,&quot;selectorFn&quot;,&quot;publish&quot;,&quot;refCount&quot;,&quot;events&quot;,&quot;PointerEvent&quot;,&quot;TouchEvent&quot;,&quot;split&quot;,&quot;ReadyObservable&quot;,&quot;ReadyDisposable&quot;,&quot;_o&quot;,&quot;_addedHandlers&quot;,&quot;document&quot;,&quot;readyState&quot;,&quot;setTimeout&quot;,&quot;ready&quot;,&quot;AjaxObservable&quot;,&quot;_settings&quot;,&quot;AjaxDisposable&quot;,&quot;state&quot;,&quot;_state&quot;,&quot;_xhr&quot;,&quot;isDone&quot;,&quot;normalizeError&quot;,&quot;normalizeSuccess&quot;,&quot;processResponse&quot;,&quot;createXHR&quot;,&quot;err&quot;,&quot;user&quot;,&quot;open&quot;,&quot;method&quot;,&quot;url&quot;,&quot;async&quot;,&quot;password&quot;,&quot;headers&quot;,&quot;header&quot;,&quot;setRequestHeader&quot;,&quot;timeout&quot;,&quot;ontimeout&quot;,&quot;progressObserver&quot;,&quot;upload&quot;,&quot;onload&quot;,&quot;onprogress&quot;,&quot;onerror&quot;,&quot;onabort&quot;,&quot;onreadystatechange&quot;,&quot;contentType&quot;,&quot;hasContent&quot;,&quot;body&quot;,&quot;newBody&quot;,&quot;prop&quot;,&quot;push&quot;,&quot;join&quot;,&quot;send&quot;,&quot;abort&quot;,&quot;ajaxRequest&quot;,&quot;ajax&quot;,&quot;options&quot;,&quot;crossDomain&quot;,&quot;post&quot;,&quot;get&quot;,&quot;getJSON&quot;,&quot;map&quot;,&quot;x&quot;,&quot;destroy&quot;,&quot;trash&quot;,&quot;createElement&quot;,&quot;appendChild&quot;,&quot;innerHTML&quot;,&quot;ScriptObservable&quot;,&quot;ScriptDisposable&quot;,&quot;script&quot;,&quot;_script&quot;,&quot;id&quot;,&quot;jsonp&quot;,&quot;jsonpCallback&quot;,&quot;src&quot;,&quot;replace&quot;,&quot;data&quot;,&quot;called&quot;,&quot;onreadystatechanged&quot;,&quot;head&quot;,&quot;getElementsByTagName&quot;,&quot;documentElement&quot;,&quot;insertBefore&quot;,&quot;firstChild&quot;,&quot;jsonpRequest&quot;,&quot;SocketObservable&quot;,&quot;protocol&quot;,&quot;_url&quot;,&quot;_protocol&quot;,&quot;_open&quot;,&quot;_close&quot;,&quot;createOpenHandler&quot;,&quot;openHandler&quot;,&quot;createMsgHandler&quot;,&quot;createErrHandler&quot;,&quot;createCloseHandler&quot;,&quot;wasClean&quot;,&quot;SocketDisposable&quot;,&quot;msgFn&quot;,&quot;errFn&quot;,&quot;closeFn&quot;,&quot;_socket&quot;,&quot;_msgFn&quot;,&quot;_errFn&quot;,&quot;_closeFn&quot;,&quot;WebSocket&quot;,&quot;msgHandler&quot;,&quot;errHandler&quot;,&quot;closeHandler&quot;,&quot;SocketObserver&quot;,&quot;OPEN&quot;,&quot;error&quot;,&quot;completed&quot;,&quot;fromWebSocket&quot;,&quot;openObserver&quot;,&quot;WorkerObserver&quot;,&quot;worker&quot;,&quot;postMessage&quot;,&quot;WorkerObservable&quot;,&quot;createMessageHandler&quot;,&quot;WorkerDisposable&quot;,&quot;w&quot;,&quot;_w&quot;,&quot;terminate&quot;,&quot;Worker&quot;,&quot;messageHandler&quot;,&quot;fromWorker&quot;,&quot;MutationObserverObservable&quot;,&quot;target&quot;,&quot;_target&quot;,&quot;_options&quot;,&quot;InnerDisposable&quot;,&quot;mutationObserver&quot;,&quot;_m&quot;,&quot;disconnect&quot;,&quot;observe&quot;,&quot;fromMutationObserver&quot;,&quot;CurrentPositionObservable&quot;,&quot;opts&quot;,&quot;_opts&quot;,&quot;navigator&quot;,&quot;geolocation&quot;,&quot;getCurrentPosition&quot;,&quot;WatchPositionObservable&quot;,&quot;WatchPositionDisposable&quot;,&quot;_id&quot;,&quot;clearWatch&quot;,&quot;watchId&quot;,&quot;watchPosition&quot;,&quot;geolocationOptions&quot;,&quot;navigation&quot;,&quot;FromReaderObservable&quot;,&quot;readerFn&quot;,&quot;file&quot;,&quot;encoding&quot;,&quot;_readerFn&quot;,&quot;_file&quot;,&quot;_progressObserver&quot;,&quot;_encoding&quot;,&quot;createLoadHandler&quot;,&quot;p&quot;,&quot;result&quot;,&quot;createErrorHandler&quot;,&quot;createProgressHandler&quot;,&quot;FromReaderDisposable&quot;,&quot;reader&quot;,&quot;loadHandler&quot;,&quot;errorHandler&quot;,&quot;progressHandler&quot;,&quot;_r&quot;,&quot;_po&quot;,&quot;_lFn&quot;,&quot;_eFn&quot;,&quot;_pFn&quot;,&quot;FileReader&quot;,&quot;LOADING&quot;,&quot;fromReader&quot;,&quot;asArrayBuffer&quot;,&quot;asBinaryString&quot;,&quot;asDataURL&quot;,&quot;asText&quot;,&quot;EventSourceObservable&quot;,&quot;createOnOpen&quot;,&quot;source&quot;,&quot;onOpen&quot;,&quot;createOnError&quot;,&quot;EventSource&quot;,&quot;CLOSED&quot;,&quot;createOnMessage&quot;,&quot;EventSourceDisposable&quot;,&quot;s&quot;,&quot;_s&quot;,&quot;onMessage&quot;,&quot;fromEventSource&quot;,&quot;requestAnimFrame&quot;,&quot;cancelAnimFrame&quot;,&quot;requestAnimationFrame&quot;,&quot;cancelAnimationFrame&quot;,&quot;mozRequestAnimationFrame&quot;,&quot;mozCancelAnimationFrame&quot;,&quot;webkitRequestAnimationFrame&quot;,&quot;webkitCancelAnimationFrame&quot;,&quot;msRequestAnimationFrame&quot;,&quot;msCancelAnimationFrame&quot;,&quot;oRequestAnimationFrame&quot;,&quot;oCancelAnimationFrame&quot;,&quot;cb&quot;,&quot;clearTimeout&quot;,&quot;RequestAnimationFrameScheduler&quot;,&quot;scheduleAction&quot;,&quot;disposable&quot;,&quot;action&quot;,&quot;scheduler&quot;,&quot;setDisposable&quot;,&quot;_fixup&quot;,&quot;ClearDisposable&quot;,&quot;_method&quot;,&quot;schedule&quot;,&quot;_scheduleFuture&quot;,&quot;dueTime&quot;,&quot;microtask&quot;,&quot;clearMethod&quot;,&quot;handle&quot;,&quot;tasksByHandle&quot;,&quot;runTask&quot;,&quot;currentlyRunning&quot;,&quot;task&quot;,&quot;postMessageSupported&quot;,&quot;importScripts&quot;,&quot;isAsync&quot;,&quot;oldHandler&quot;,&quot;onmessage&quot;,&quot;onGlobalPostMessage&quot;,&quot;event&quot;,&quot;substring&quot;,&quot;MSG_PREFIX&quot;,&quot;scheduleMethod&quot;,&quot;nextHandle&quot;,&quot;BrowserMutationObserver&quot;,&quot;PREFIX&quot;,&quot;observer&quot;,&quot;mutations&quot;,&quot;forEach&quot;,&quot;mutation&quot;,&quot;attributeName&quot;,&quot;attributes&quot;,&quot;setAttribute&quot;,&quot;setImmediate&quot;,&quot;Math&quot;,&quot;random&quot;,&quot;attachEvent&quot;,&quot;MessageChannel&quot;,&quot;channel&quot;,&quot;port1&quot;,&quot;port2&quot;,&quot;scriptElement&quot;,&quot;parentNode&quot;,&quot;removeChild&quot;,&quot;MicroTaskScheduler&quot;],&quot;mappings&quot;:&quot;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&quot;}</td>
+      </tr>
+</table>
+
+  </div>
+
+</div>
+
+<button type="button" data-facebox="#jump-to-line" data-facebox-class="linejump" data-hotkey="l" class="d-none">Jump to Line</button>
+<div id="jump-to-line" style="display:none">
+  <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="" class="js-jump-to-line-form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+    <input class="form-control linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" aria-label="Jump to line" autofocus>
+    <button type="submit" class="btn">Go</button>
+</form></div>
+
+  </div>
+  <div class="modal-backdrop js-touch-events"></div>
+</div>
+
+
+    </div>
+  </div>
+
+  </div>
+
+      <div class="container site-footer-container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links float-right">
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact GitHub</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2017 <span title="0.08046s from github-fe127-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+  
+
+  <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+    <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"/></svg>
+    <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"/></svg>
+    </button>
+    You can't perform that action at this time.
+  </div>
+
+
+    
+    <script crossorigin="anonymous" integrity="sha256-0ZLoD9NuEtMY0oxGaomY68qdIKFaOBIvme3+RGEqA0s=" src="https://assets-cdn.github.com/assets/frameworks-d192e80fd36e12d318d28c466a8998ebca9d20a15a38122f99edfe44612a034b.js"></script>
+    <script async="async" crossorigin="anonymous" integrity="sha256-RT+O3U3nj5VlGSSUNxY686U3/PecoSYqvGg/hgdrqTQ=" src="https://assets-cdn.github.com/assets/github-453f8edd4de78f956519249437163af3a537fcf79ca1262abc683f86076ba934.js"></script>
+    
+    
+    
+    
+  <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+    <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"/></svg>
+    <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+  </div>
+  <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"/></svg>
+    </button>
+  </div>
+</div>
+
+
+  </body>
+</html>
+
