@@ -4,7 +4,7 @@
         <div class="gauge-b"></div>
         <div class="gauge-c" style={ style }></div>
         <div class="gauge-data">
-            <h1>{ value }%</h1>
+            <h1>{ value }</h1>
         </div>
     </div>
 

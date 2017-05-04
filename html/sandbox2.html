@@ -112,8 +112,22 @@
                         height: 30px;
                         transition: all 1s;
                     }
+                    status2 {
+                        width: 50px;
+                        height: 50px;
+                    }
                 </style>
                 <status1 id="status1" style="top:100px; left: 200px;"></status1>
+                <status2 id="status2" style="top:100px; left: 300px;"></status2>
+            </div>
+            <div class="layer gauge">
+                <style scoped>
+                    gauge1 {
+                        transition: all 1s;
+                        transform: scale(0.3);
+                    }
+                </style>
+                <gauge1 id="gauge1" style="top:300px; left: 300px;"></gauge1>
             </div>
             <div class="layer admin">
                 <fab1 style="top: 100px; left: 180px;">
@@ -300,6 +314,28 @@
                 console.debug(x)
                 tag.change(x)
             }.bind(null, status1));
+        });
+        riot.compile('tags/status2.tag', function () {
+            var status2 = riot.mount('#status2')[0]
+            source.map(function (x) {
+                // 0 ～ 100 のランダムデータ
+                return Math.floor(Math.random() * (101 - 1) + 1);
+            }).subscribe(function (tag, x) {
+                console.debug(x)
+                tag.change(x)
+            }.bind(null, status2));
+        });
+    </script>
+    <script>
+        riot.compile('tags/gauge1.tag', function () {
+            var gauge1 = riot.mount('#gauge1')[0]
+            source.map(function (x) {
+                // 0 ～ 100 のランダムデータ
+                return Math.floor(Math.random() * (101 - 1) + 1);
+            }).subscribe(function (tag, x) {
+                console.debug(x)
+                tag.update({value:x})
+            }.bind(null, gauge1));
         });
     </script>
 
