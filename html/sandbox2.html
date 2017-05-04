@@ -105,6 +105,15 @@
                 <console1 id="console3" style="top:160px; left: 400px;"></console1>
                 <console1 id="console4" style="top:160px; left: 500px;"></console1>
             </div>
+            <div class="layer list">
+                <style scoped>
+                    list1:hover {
+                        font-size: 16px;
+                        z-index: 999;
+                    }
+                </style>
+                <list1 id="list1" style="top:580px; left: 200px;"></list1>
+            </div>
             <div class="layer status">
                 <style scoped>
                     status1 {
@@ -336,6 +345,26 @@
                 console.debug(x)
                 tag.update({value:x})
             }.bind(null, gauge1));
+        });
+    </script>
+    <script>
+        riot.compile('tags/list1.tag', function () {
+            var list1 = riot.mount('#list1')[0]
+            source
+                .map(function (x) {
+                    let tag = document.createElement('div');
+                    tag.innerText = x;
+                    return tag;
+                })
+                .subscribe(function (parent, child) {
+                    parent.add(child);
+                    Rx.Observable.just(child)
+                        .delay(3600)
+                        .subscribe(function (parent, child) {
+                            console.debug('remove for:', child);
+                            parent.remove(child);
+                        }.bind(null, list1));
+                }.bind(null, list1))
         });
     </script>
 
