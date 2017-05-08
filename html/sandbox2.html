@@ -28,17 +28,17 @@
             a {
                 color: inherit;
             }
-            
+
             .frame {
                 position: relative;
             }
-            
+
             .frame .bg {
                 max-height: 800px;
                 filter: invert(100%);
                 z-index: -100;
             }
-            
+
             label {
                 border-radius: 2px;
                 background: #585858;
@@ -48,13 +48,15 @@
                 position: absolute;
                 white-space: nowrap;
             }
-            
+
             .layer.traffic {
                 display: none;
             }
+
             .layer.admin {
                 display: none;
             }
+
             .layer.hostname {
                 display: none;
             }
@@ -92,7 +94,7 @@
                         height: 5em;
                         transition: all 1s;
                     }
-                    
+
                     console1:hover {
                         font-size: 16px;
                         width: 30em;
@@ -121,6 +123,7 @@
                         height: 30px;
                         transition: all 1s;
                     }
+
                     status2 {
                         width: 50px;
                         height: 50px;
@@ -135,8 +138,12 @@
                         transition: all 1s;
                         transform: scale(0.3);
                     }
+                    gauge2 {
+                        height: 50px;
+                    }
                 </style>
                 <gauge1 id="gauge1" style="top:300px; left: 300px;"></gauge1>
+                <gauge2 id="gauge2" style="top: 300px; left: 500px;"></gauge2>
             </div>
             <div class="layer admin">
                 <fab1 style="top: 100px; left: 180px;">
@@ -343,28 +350,145 @@
                 return Math.floor(Math.random() * (101 - 1) + 1);
             }).subscribe(function (tag, x) {
                 console.debug(x)
-                tag.update({value:x})
+                tag.update({ value: x })
             }.bind(null, gauge1));
         });
     </script>
     <script>
+        // TCPステートデータ正常系
+        var data = [
+            // passive open -> active close #1
+            "192.168.61.102:143     192.30.252.154:29730   SYN_RECEIVED",
+            "192.168.61.102:143     192.30.252.154:29730   ESTABLISHED",
+            "192.168.61.102:143     192.30.252.154:29730   FIN_WAIT_1",
+            "192.168.61.102:143     192.30.252.154:29730   FIN_WAIT_2",
+            "192.168.61.102:143     192.30.252.154:29730   TIME_WAIT",
+            "192.168.61.102:143     192.30.252.154:29730   CLOSED",
+
+            // passive open -> active close #2
+            "192.168.61.102:143     111.221.29.122:14323   SYN_RECEIVED",
+            "192.168.61.102:143     111.221.29.122:14323   ESTABLISHED",
+            "192.168.61.102:143     111.221.29.122:14323   FIN_WAIT_1",
+            "192.168.61.102:143     111.221.29.122:14323   CLOSING",
+            "192.168.61.102:143     111.221.29.122:14323   TIME_WAIT",
+            "192.168.61.102:143     111.221.29.122:14323   CLOSED",
+
+            // passive open -> passive close
+            "192.168.61.102:143     162.125.34.129:20401   SYN_RECEIVED",
+            "192.168.61.102:143     162.125.34.129:20401   ESTABLISHED",
+            "192.168.61.102:143     162.125.34.129:20401   CLOSE_WAIT",
+            "192.168.61.102:143     162.125.34.129:20401   LAST_ACK",
+            "192.168.61.102:143     162.125.34.129:20401   CLOSED",
+
+            // active open -> active close #1
+            "192.168.61.102:56144   64.233.188.188:143     SYN_SENT",
+            "192.168.61.102:56144   64.233.188.188:143     ESTABLISHED",
+            "192.168.61.102:56144   64.233.188.188:143     FIN_WAIT_1",
+            "192.168.61.102:56144   64.233.188.188:143     FIN_WAIT_2",
+            "192.168.61.102:56144   64.233.188.188:143     TIME_WAIT",
+            "192.168.61.102:56144   64.233.188.188:143     CLOSED",
+
+            // active open -> active close #2
+            "192.168.61.102:52311   216.58.197.227:143     SYN_SENT",
+            "192.168.61.102:52311   216.58.197.227:143     ESTABLISHED",
+            "192.168.61.102:52311   216.58.197.227:143     FIN_WAIT_1",
+            "192.168.61.102:52311   216.58.197.227:143     CLOSING",
+            "192.168.61.102:52311   216.58.197.227:143     TIME_WAIT",
+            "192.168.61.102:52311   216.58.197.227:143     CLOSED",
+
+            // active open -> passive close
+            "192.168.61.102:23487   184.73.226.111:143     SYN_SENT",
+            "192.168.61.102:23487   184.73.226.111:143     ESTABLISHED",
+            "192.168.61.102:23487   184.73.226.111:143     CLOSE_WAIT",
+            "192.168.61.102:23487   184.73.226.111:143     LAST_ACK",
+            "192.168.61.102:23487   184.73.226.111:143     CLOSED"
+        ];
+        var data = [
+            "192.168.61.102:143     192.30.252.154:29730   SYN_RECEIVED",
+            "192.168.61.102:143     192.30.252.154:29730   ESTABLISHED",
+            "192.168.61.102:52311   216.58.197.227:143     SYN_SENT",
+            "192.168.61.102:52311   216.58.197.227:143     ESTABLISHED",
+            "192.168.61.102:143     192.30.252.154:29730   FIN_WAIT_1",
+            "192.168.61.102:56144   64.233.188.188:143     SYN_SENT",
+            "192.168.61.102:56144   64.233.188.188:143     ESTABLISHED",
+            "192.168.61.102:56144   64.233.188.188:143     FIN_WAIT_1",
+            "192.168.61.102:143     162.125.34.129:20401   SYN_RECEIVED",
+            "192.168.61.102:143     162.125.34.129:20401   ESTABLISHED",
+            "192.168.61.102:143     162.125.34.129:20401   CLOSE_WAIT",
+            "192.168.61.102:52311   216.58.197.227:143     FIN_WAIT_1",
+            "192.168.61.102:143     162.125.34.129:20401   LAST_ACK",
+            "192.168.61.102:143     162.125.34.129:20401   CLOSED",
+            "192.168.61.102:56144   64.233.188.188:143     FIN_WAIT_2",
+            "192.168.61.102:52311   216.58.197.227:143     CLOSING",
+            "192.168.61.102:52311   216.58.197.227:143     TIME_WAIT",
+            "192.168.61.102:52311   216.58.197.227:143     CLOSED",
+            "192.168.61.102:56144   64.233.188.188:143     TIME_WAIT",
+            "192.168.61.102:56144   64.233.188.188:143     CLOSED",
+            "192.168.61.102:52311   216.58.197.227:143     SYN_SENT",
+            "192.168.61.102:52311   216.58.197.227:143     ESTABLISHED",
+            "192.168.61.102:143     192.30.252.154:29730   FIN_WAIT_2",
+            "192.168.61.102:143     192.30.252.154:29730   TIME_WAIT",
+            "192.168.61.102:143     192.30.252.154:29730   CLOSED",
+            "192.168.61.102:52311   216.58.197.227:143     FIN_WAIT_1",
+            "192.168.61.102:23487   184.73.226.111:143     SYN_SENT",
+            "192.168.61.102:52311   216.58.197.227:143     CLOSING",
+            "192.168.61.102:143     111.221.29.122:14323   SYN_RECEIVED",
+            "192.168.61.102:143     111.221.29.122:14323   ESTABLISHED",
+            "192.168.61.102:143     111.221.29.122:14323   FIN_WAIT_1",
+            "192.168.61.102:143     111.221.29.122:14323   CLOSING",
+            "192.168.61.102:143     111.221.29.122:14323   TIME_WAIT",
+            "192.168.61.102:143     111.221.29.122:14323   CLOSED",
+            "192.168.61.102:52311   216.58.197.227:143     TIME_WAIT",
+            "192.168.61.102:52311   216.58.197.227:143     CLOSED",
+            "192.168.61.102:23487   184.73.226.111:143     ESTABLISHED",
+            "192.168.61.102:23487   184.73.226.111:143     CLOSE_WAIT",
+            "192.168.61.102:23487   184.73.226.111:143     LAST_ACK",
+            "192.168.61.102:23487   184.73.226.111:143     CLOSED"
+        ];
+        var tcpStateSource = Rx.Observable.fromArray(data)
+            .map(function (x) { return Rx.Observable.return(x).delay(1000); })
+            .concatAll();
+        var tcpSessionSource = tcpStateSource
+            .groupBy(function(x) {
+                let a = x.split(/\s+/);
+                return a[0] + ' ' + a[1];
+            })
+            .publish()
+            .refCount();
+        
+        // 1秒ごとにトリガーするストリーム
+        var timeSource = Rx.Observable
+            .interval(1000)
+            .take(100);
+    </script>
+    <script>
+        var list1;
         riot.compile('tags/list1.tag', function () {
-            var list1 = riot.mount('#list1')[0]
-            source
-                .map(function (x) {
-                    let tag = document.createElement('div');
-                    tag.innerText = x;
-                    return tag;
-                })
-                .subscribe(function (parent, child) {
-                    parent.add(child);
-                    Rx.Observable.just(child)
-                        .delay(3600)
-                        .subscribe(function (parent, child) {
-                            console.debug('remove for:', child);
-                            parent.remove(child);
-                        }.bind(null, list1));
-                }.bind(null, list1))
+            list1 = riot.mount('#list1')[0]
+
+            tcpSessionSource.subscribe(function(session) {
+                console.info(session);
+                var tag = document.createElement('div');
+                list1.add(tag);
+                // TODO: セッション再利用の場合、新規と判定しない
+                session
+                    .takeWhile(function(x) {
+                        return x.split(/\s+/)[2] != 'CLOSED';
+                    })
+                    .subscribe(
+                        data => tag.innerText = data,
+                        err => console.error('err:', err),
+                        complete => list1.remove(tag)
+                    );
+            });
+        });
+        riot.compile('tags/gauge2.tag', function() {
+            var gauge = riot.mount('#gauge2')[0]
+            timeSource
+                .subscribe(function() {
+                    console.info(list1.count());
+                    gauge.update({value:list1.count()});
+                });
         });
     </script>
 

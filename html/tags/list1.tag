@@ -24,6 +24,7 @@
         this.add = function (x) { this.trigger('add', x) }
         this.remove = function (x) { this.trigger('remove', x) }
         this.change = function (x) { this.trigger('change', x) }
+        this.count = function() { return this.root.childElementCount }
         
         this.on('add', function (tag) {
             console.log(tag)
@@ -37,5 +38,6 @@
             this.root.removeChild(tag)
 
         })
+
     </script>
 </list1>
