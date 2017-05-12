@@ -20,22 +20,26 @@
     </style>
     
     <script>
-        // todo: move to mixin
-        this.add = function (x) { this.trigger('add', x) }
-        this.remove = function (x) { this.trigger('remove', x) }
-        this.change = function (x) { this.trigger('change', x) }
+        this.add = function (key, element) { this.trigger('add', key, element) }
+        this.remove = function (key) { this.trigger('remove', key) }
+        this.change = function (key, element) { this.trigger('change', key, element) }
         this.count = function() { return this.root.childElementCount }
         
-        this.on('add', function (tag) {
-            console.log(tag)
-            tag.style.color = '#fff'
-            this.root.appendChild(tag)
-            tag.style.color = null
+        this.child = {}
+
+        this.on('add', function (key, element) {
+            console.log('add:', key, element)
+            if (this.child[key]) { this.remove(key) }
+            this.child[key] = element
+            element.style.color = '#fff'
+            this.root.appendChild(element)
+            element.style.color = null
+            console.info(this.child)
         })
 
-        this.on('remove', function(tag) {
-            console.log('remove:', tag)
-            this.root.removeChild(tag)
+        this.on('remove', function(key) {
+            console.log('remove:', key)
+            this.root.removeChild(this.child[key])
 
         })
 

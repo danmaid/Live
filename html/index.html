@@ -5,9 +5,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Demo</title>
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <!--<script src="https://use.fontawesome.com/3dd7d5f3cc.js"></script>-->
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <base target="_blank">
+    <style>
+        body {
+            background-color: #000;
+            margin: 0;
+        }
+
+        main {
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,48 +30,71 @@
         グローバルナビ
     </nav>-->
     <main role="main">
-        <!-- main with editor -->
-        <!-- ビュー基準位置(ビュー自体を相対的に配置するため) -->
-        <div class="view-container">
-            <div id="mainview" class="main-view">
-                <div class="contents-offset">
-                    <div class="main-contents">
-                        コンテンツ１
-                    </div>
-                </div>
-                <canvas id="canvas" class="canvas">
-                    キャンバス
-                </canvas>
-                <div id="target" class="layer no-1">
-                    レイヤー１
-                </div>
-                <div class="layer no-2">
-                    レイヤー２
-                </div>
-            </div>
-        </div>
-
-        <i id="tool-link" class="tool-button fa fa-link" aria-hidden="true"></i>
-        <button id="tool-add" class="tool-button fa fa-plus" aria-hidden="true"></button>
-        <a href="#" style="height: 100px; width: 100px; display: block; background: black;"></a>
-
-        <!--<div id="tail-view" style="width: 100%; height: 100px; overflow: scroll;"></div>-->
         <style scoped>
-            #tail-view {
-                width: 100%;
-                height: 100px;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
+            console1 {
+                width: auto;
+                min-width: 40em;
+                max-width: 100vw;
+                height: 20em;
+                transition: all 1s;
+            }
+
+            .update-time {
+                color: #fff;
+                position: absolute;
+                font-size: 12px;
             }
         </style>
-        <div id="tail-view"></div>
-        <div id="watch-view" style="width: 100%; height: 100px; overflow: hidden;"></div>
-        <div id="matrix-view" style="width: 100%; height: 200px; overflow: hidden;"></div>
+        <console1 id="console1" style="top:0; left: 0;"></console1>
+        <div id="kernel-time" class="update-time" style="top: 21em; left: 0;"></div>
+        <list1 id="kernel-list" style="top: 22em; left: 1em;"></list1>
+        <div id="k-time" class="update-time" style="top: 41em; left: 0;"></div>
+        <list1 id="k-list" style="top: 0; right: 50%;"></list1>
 
-        <!--<div id="navview" class="navview">
-        </div>-->
+        <!-- debug -->
+        <style scoped>
+            .debug-view {
+                position: absolute;
+                left: calc(50vw - 4px);
+                top: 0;
+                width: calc(50vw - 4px);
+                height: 100vh;
+            }
 
+            .debug-view console1 {
+                position: unset;
+                width: 100%;
+                height: 5em;
+            }
+        </style>
+        <div class="debug-view">
+            <console1 id="w1"></console1>
+            <div>a</div>
+            <console1 id="w4"></console1>
+            <div>a</div>
+            <console1 id="w5"></console1>
+            <div>a</div>
+            <style scoped>
+                .debug-view .groupBy {
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 100%;
+                }
+
+                .debug-view .title {
+                    color: #fff;
+                }
+
+                .debug-view .groupBy console1 {
+                    position: unset;
+                    width: 23%;
+                    height: 10em;
+                    min-width: 10em;
+                    min-height: 5em;
+                }
+            </style>
+            <div class="groupBy"></div>
+        </div>
     </main>
     <!--<aside role="complementary">
         サイドコンテンツ
@@ -67,46 +102,109 @@
     <footer role="contentinfo">
         フッター
     </footer>-->
-    <!-- include external library -->
-    <script src="scripts/lib/riot+compiler.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.1/Rx.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs-dom/7.0.3/rx.dom.min.js"></script>-->
     <script src="scripts/lib/rx.all.min.js"></script>
     <script src="scripts/lib/rx.dom.min.js"></script>
-    <script src="scripts/lib/raphael-2.1.4.min.js"></script>
-    <script src="scripts/lib/justgage.js"></script>
+    <script src="scripts/lib/riot_compiler.min.js"></script>
+    <script>
+        var demo6901stream = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
+            .do(function (x) {
+                let view = riot.mount('.debug-view #w1')[0];
+                let line = document.createElement('div');
+                line.innerText = x;
+                view.add(line);
+            })
+            .map(function (x) {
+                return JSON.parse(x);
+            })
+            .map(function (x) {
+                x.timestamp = new Date(x.timestamp * 1000);
+                return x;
+            })
+            .delay(500)
+            .share();
 
-    <!-- original scripts -->
-    <script type="text/javascript">
-        var toolAdd = document.getElementById("tool-add");
-        var addMouseDownStream = Rx.Observable.fromEvent(toolAdd, 'mousedown');
-        var addMouseUpStream = Rx.Observable.fromEvent(toolAdd, 'mouseup');
-        var addMouseMoveStream = Rx.Observable.fromEvent(toolAdd, 'mousemove');
-    </script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/tailf.js"></script>
-    <script src="scripts/watch.js"></script>
-    <script src="scripts/matrixcode.js"></script>
-    <script type="text/javascript">
-        var toolLink = document.getElementById("tool-link");
-        toolLink.addEventListener("click", function () {
-            var target = document.getElementById("target");
-            var canvas = document.getElementById("canvas");
-            var instance = new addLink(canvas, target);
+
+        riot.compile('tags/console1.tag', function () {
+            var console1 = riot.mount('#console1')[0]
+            demo6901stream
+                // .do(function(x) { console.debug(x); })
+                .map(function (x) {
+                    // データを<div>data</div>にラップする
+                    let line = document.createElement('div');
+                    line.innerText = x;
+                    return line;
+                })
+                .delay(500)
+                .subscribe(function (x) { console1.add(x); });
+        });
+
+        riot.compile('tags/list1.tag', function () {
+            // 更新時間
+            var kernelTime = document.getElementById('kernel-time');
+            demo6901stream
+                .filter(function (x) { return x.name == 'kernel' })
+                .map(function (x) { return x.timestamp })
+                .do(function (x) {
+                    let view = riot.mount('.debug-view #w4')[0];
+                    let line = document.createElement('div');
+                    line.innerText = JSON.stringify(x);
+                    view.add(line);
+                })
+                .delay(500)
+                .subscribe(function (x) {
+                    kernelTime.innerText = x;
+                });
+
+            var kernelList = riot.mount('#kernel-list')[0];
+            demo6901stream
+                .filter(function (x) { return x.name == 'kernel' })
+                .map(function (x) { return x.fields })
+                .do(function (x) {
+                    let view = riot.mount('.debug-view #w5')[0];
+                    let line = document.createElement('div');
+                    line.innerText = JSON.stringify(x);
+                    view.add(line);
+                })
+                .delay(500)
+                .subscribe(function (x) {
+                    Object.keys(x).forEach(function (key) {
+                        let tag = document.createElement('div');
+                        tag.innerText = key + ':' + x[key];
+                        kernelList.add(key, tag);
+                    });
+                });
+
+            var kList = riot.mount('#k-list')[0];
+            demo6901stream
+                .groupBy(function (x) { return x.name })
+                .do(function (x) {
+                    console.debug(x);
+                })
+                .delay(500)
+                .subscribe(function (stream) {
+                    var debugView = document.querySelector('.debug-view .groupBy');
+                    var title = document.createElement('div');
+                    title.innerText = stream.key;
+                    title.classList.add('title');
+                    debugView.appendChild(title);
+                    var child = debugView.appendChild(document.createElement('console1'));
+                    child.id = stream.key;
+                    var tag = riot.mount(child)[0];
+                    stream
+                        .map(function (x) { return x.fields })
+                        .delay(500)
+                        .subscribe(function (x) {
+                            Object.keys(x).forEach(function (key) {
+                                let tag = document.createElement('div');
+                                tag.innerText = key + ':' + x[key];
+                                this.add(tag);
+                            }.bind(tag));
+                        });
+                });
         });
     </script>
-    <script type="text/javascript">
-        var responseStream = Rx.DOM.fromEventSource('http://localhost:6969/sse');
-
-        var randomStream = Rx.Observable.interval(1000).map(t => String.fromCharCode(3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33,3e4+Math.random()*33));
-        var tailView = document.getElementById('tail-view');
-        tailfLimit(randomStream, tailView);
-
-        var watchView = document.getElementById('watch-view');
-        watch(responseStream, watchView);
-
-        var matrixView = document.getElementById('matrix-view');
-        matrixCode(responseStream, matrixView);
-    </script>
-
 </body>
 
 </html>

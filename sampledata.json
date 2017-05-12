@@ -1,0 +1,194 @@
+{
+    "fields": {
+        "boot_time": 1494336260,
+        "context_switches": 589119,
+        "interrupts": 277937,
+        "processes_forked": 28401
+    },
+    "name": "kernel",
+    "tags": {
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "blocked": 0,
+        "paging": 0,
+        "running": 0,
+        "sleeping": 77,
+        "stopped": 0,
+        "total": 77,
+        "total_threads": 90,
+        "unknown": 0,
+        "zombies": 0
+    },
+    "name": "processes",
+    "tags": {
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "active": 211611648,
+        "available": 450265088,
+        "available_percent": 87.73394414870268,
+        "buffered": 21766144,
+        "cached": 252862464,
+        "free": 157229056,
+        "inactive": 89899008,
+        "total": 513216512,
+        "used": 62951424,
+        "used_percent": 12.266055851297317
+    },
+    "name": "mem",
+    "tags": {
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "free": 0,
+        "total": 0,
+        "used": 0,
+        "used_percent": 0
+    },
+    "name": "swap",
+    "tags": {
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "in": 0,
+        "out": 0
+    },
+    "name": "swap",
+    "tags": {
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "load1": 0,
+        "load15": 0,
+        "load5": 0,
+        "n_cpus": 1,
+        "n_users": 1
+    },
+    "name": "system",
+    "tags": {
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "uptime": 23900,
+        "uptime_format": " 6:38"
+    },
+    "name": "system",
+    "tags": {
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "usage_guest": 0,
+        "usage_guest_nice": 0,
+        "usage_idle": 99.90000000001601,
+        "usage_iowait": 0,
+        "usage_irq": 0,
+        "usage_nice": 0,
+        "usage_softirq": 0,
+        "usage_steal": 0,
+        "usage_system": 0,
+        "usage_user": 0.10000000000001563
+    },
+    "name": "cpu",
+    "tags": {
+        "cpu": "cpu0",
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "usage_guest": 0,
+        "usage_guest_nice": 0,
+        "usage_idle": 99.90000000001601,
+        "usage_iowait": 0,
+        "usage_irq": 0,
+        "usage_nice": 0,
+        "usage_softirq": 0,
+        "usage_steal": 0,
+        "usage_system": 0,
+        "usage_user": 0.10000000000001563
+    },
+    "name": "cpu",
+    "tags": {
+        "cpu": "cpu-total",
+        "host": "ip-192-168-8-148"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "free": 7107842048,
+        "inodes_free": 487341,
+        "inodes_total": 524288,
+        "inodes_used": 36947,
+        "total": 8318783488,
+        "used": 1108287488,
+        "used_percent": 13.489167656667286
+    },
+    "name": "disk",
+    "tags": {
+        "device": "xvda1",
+        "fstype": "ext4",
+        "host": "ip-192-168-8-148",
+        "path": "/"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "io_time": 23752,
+        "iops_in_progress": 0,
+        "read_bytes": 133980672,
+        "read_time": 38896,
+        "reads": 10953,
+        "write_bytes": 191205376,
+        "write_time": 55580,
+        "writes": 7635
+    },
+    "name": "diskio",
+    "tags": {
+        "host": "ip-192-168-8-148",
+        "name": "xvda"
+    },
+    "timestamp": 1494360160
+}
+{
+    "fields": {
+        "io_time": 23724,
+        "iops_in_progress": 0,
+        "read_bytes": 132542976,
+        "read_time": 38852,
+        "reads": 10834,
+        "write_bytes": 191205376,
+        "write_time": 55580,
+        "writes": 7635
+    },
+    "name": "diskio",
+    "tags": {
+        "host": "ip-192-168-8-148",
+        "name": "xvda1"
+    },
+    "timestamp": 1494360160
+}

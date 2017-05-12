@@ -29,7 +29,6 @@
         }
 
         this.on('add', function (tag) {
-            console.log(tag)
             tag.style.color = '#fff'
             this.root.appendChild(tag)
             this.root.scrollTop = this.root.scrollHeight
