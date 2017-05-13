@@ -28,19 +28,16 @@
         this.child = {}
 
         this.on('add', function (key, element) {
-            console.log('add:', key, element)
+            element.style.color = '#fff'
             if (this.child[key]) { this.remove(key) }
             this.child[key] = element
-            element.style.color = '#fff'
             this.root.appendChild(element)
+            this.root.scrollTop = this.root.scrollHeight
             element.style.color = null
-            console.info(this.child)
         })
 
         this.on('remove', function(key) {
-            console.log('remove:', key)
             this.root.removeChild(this.child[key])
-
         })
 
     </script>

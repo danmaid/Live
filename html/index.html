@@ -34,22 +34,43 @@
             console1 {
                 width: auto;
                 min-width: 40em;
-                max-width: 100vw;
-                height: 20em;
+                max-width: 100%;
+                max-height: 20em;
                 transition: all 1s;
+                white-space: nowrap;
+                position: unset;
             }
 
-            .update-time {
-                color: #fff;
+            .group {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
                 position: absolute;
+            }
+
+            .group list1 {
+                position: unset;
+            }
+
+            .group .title,
+            .group .subtitle {
+                color: #fff;
                 font-size: 12px;
             }
+
+            .group .item {
+                width: 20%;
+                padding: 0.2em;
+            }
         </style>
-        <console1 id="console1" style="top:0; left: 0;"></console1>
-        <div id="kernel-time" class="update-time" style="top: 21em; left: 0;"></div>
-        <list1 id="kernel-list" style="top: 22em; left: 1em;"></list1>
-        <div id="k-time" class="update-time" style="top: 41em; left: 0;"></div>
-        <list1 id="k-list" style="top: 0; right: 50%;"></list1>
+        <console1 id="console1"></console1>
+        <div id="group1" class="group">
+            <!-- <div class="item"> -->
+            <!-- <div class="title">key</div> -->
+            <!-- <div class="subtitle">timestamp</div> -->
+            <!-- <list1></list1> -->
+            <!-- </div> -->
+        </div>
 
         <!-- debug -->
         <style scoped>
@@ -59,12 +80,17 @@
                 top: 0;
                 width: calc(50vw - 4px);
                 height: 100vh;
+                visibility: hidden;
             }
 
             .debug-view console1 {
                 position: unset;
                 width: 100%;
                 height: 5em;
+            }
+
+            .debug-view console1 div {
+                white-space: nowrap;
             }
         </style>
         <div class="debug-view">
@@ -108,82 +134,100 @@
     <script src="scripts/lib/rx.dom.min.js"></script>
     <script src="scripts/lib/riot_compiler.min.js"></script>
     <script>
-        var demo6901stream = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
-            .do(function (x) {
-                let view = riot.mount('.debug-view #w1')[0];
-                let line = document.createElement('div');
-                line.innerText = x;
-                view.add(line);
-            })
-            .map(function (x) {
-                return JSON.parse(x);
-            })
-            .map(function (x) {
-                x.timestamp = new Date(x.timestamp * 1000);
-                return x;
-            })
-            .delay(500)
-            .share();
+        var console1;
+        var debugViewW1;
+        var kernelTime;
+        var kernelList;
+        var kList;
 
-
-        riot.compile('tags/console1.tag', function () {
-            var console1 = riot.mount('#console1')[0]
-            demo6901stream
-                // .do(function(x) { console.debug(x); })
-                .map(function (x) {
-                    // データを<div>data</div>にラップする
-                    let line = document.createElement('div');
-                    line.innerText = x;
-                    return line;
-                })
-                .delay(500)
-                .subscribe(function (x) { console1.add(x); });
+        const compileConsole1 = new Promise(function (resolve, reject) {
+            riot.compile('tags/console1.tag', function () {
+                console.debug('compiled console1');
+                resolve();
+            });
         });
 
-        riot.compile('tags/list1.tag', function () {
-            // 更新時間
-            var kernelTime = document.getElementById('kernel-time');
-            demo6901stream
-                .filter(function (x) { return x.name == 'kernel' })
-                .map(function (x) { return x.timestamp })
-                .do(function (x) {
-                    let view = riot.mount('.debug-view #w4')[0];
-                    let line = document.createElement('div');
-                    line.innerText = JSON.stringify(x);
-                    view.add(line);
-                })
-                .delay(500)
-                .subscribe(function (x) {
-                    kernelTime.innerText = x;
+        const compileList1 = new Promise(function (resolve, reject) {
+            riot.compile('tags/list1.tag', function () {
+                console.debug('compiled list1');
+                resolve();
+            });
+        });
+
+        Promise.all([compileConsole1, compileList1])
+            .then(function () {
+                debugViewW1 = riot.mount('.debug-view #w1')[0];
+                console1 = riot.mount('#console1')[0];
+                kernelTime = document.getElementById('kernel-time');
+                kernelList = riot.mount('#kernel-list')[0];
+                kList = riot.mount('#k-list')[0];
+                console.debug('step mount');
+            })
+            .then(function () {
+                let demo6901source = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
+                    .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
+                    .do(function (x) {
+                        let line = document.createElement('div');
+                        line.innerText = x;
+                        debugViewW1.add(line);
+                    })
+                    .map(function (x) {
+                        return JSON.parse(x);
+                    })
+                    .map(function (x) {
+                        x.timestamp = new Date(x.timestamp * 1000);
+                        return x;
+                    })
+                    .share();
+
+                // 蛇口
+                demo6901source
+                    .map(function (x) {
+                        let line = document.createElement('div');
+                        line.innerText = JSON.stringify(x);
+                        return line;
+                    })
+                    .subscribe(function (x) { console1.add(x); });
+
+                let demo6901byName = demo6901source
+                    .groupBy(function (x) { return x.name })
+                    .do(function (x) {
+                        console.debug(x);
+                    })
+                    .share();
+
+                demo6901byName.subscribe(function (stream) {
+                    let parent = document.getElementById('group1');
+                    let group = document.createElement('div');
+                    let title = document.createElement('div');
+                    let timestamp = document.createElement('div');
+                    let list = document.createElement('list1');
+                    let tag;
+                    parent.appendChild(group);
+                    group.classList.add('item');
+                    group.appendChild(title);
+                    group.appendChild(timestamp);
+                    timestamp.classList.add('subtitle');
+                    group.appendChild(list);
+                    Promise.resolve()
+                        .then(function () {
+                            title.innerText = stream.key;
+                            title.classList.add('title');
+                            tag = riot.mount(list)[0];
+                        })
+                        .then(function () {
+                            stream.subscribe(function (x) {
+                                timestamp.innerText = x.timestamp.toLocaleString();
+                                Rx.Observable.from(Object.keys(x.fields)).subscribe(function(key) {
+                                    let div = document.createElement('div');
+                                    div.innerText = key + ':' + x.fields[key];
+                                    tag.add(key, div);
+                                });
+                            });
+                        });
                 });
 
-            var kernelList = riot.mount('#kernel-list')[0];
-            demo6901stream
-                .filter(function (x) { return x.name == 'kernel' })
-                .map(function (x) { return x.fields })
-                .do(function (x) {
-                    let view = riot.mount('.debug-view #w5')[0];
-                    let line = document.createElement('div');
-                    line.innerText = JSON.stringify(x);
-                    view.add(line);
-                })
-                .delay(500)
-                .subscribe(function (x) {
-                    Object.keys(x).forEach(function (key) {
-                        let tag = document.createElement('div');
-                        tag.innerText = key + ':' + x[key];
-                        kernelList.add(key, tag);
-                    });
-                });
-
-            var kList = riot.mount('#k-list')[0];
-            demo6901stream
-                .groupBy(function (x) { return x.name })
-                .do(function (x) {
-                    console.debug(x);
-                })
-                .delay(500)
-                .subscribe(function (stream) {
+                demo6901byName.subscribe(function (stream) {
                     var debugView = document.querySelector('.debug-view .groupBy');
                     var title = document.createElement('div');
                     title.innerText = stream.key;
@@ -194,7 +238,6 @@
                     var tag = riot.mount(child)[0];
                     stream
                         .map(function (x) { return x.fields })
-                        .delay(500)
                         .subscribe(function (x) {
                             Object.keys(x).forEach(function (key) {
                                 let tag = document.createElement('div');
@@ -203,7 +246,8 @@
                             }.bind(tag));
                         });
                 });
-        });
+
+            });
     </script>
 </body>
 

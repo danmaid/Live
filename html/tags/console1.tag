@@ -23,10 +23,7 @@
     </style>
 
     <script>
-        // todo: move to mixin
-        this.add = function (x) {
-            this.trigger('add', x)
-        }
+        this.add = function (x) { this.trigger('add', x) }
 
         this.on('add', function (tag) {
             tag.style.color = '#fff'
