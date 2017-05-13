@@ -8,6 +8,7 @@
             transition: all 1s;
             white-space: nowrap;
             position: unset;
+            display: block;
         }
 
         .group {
@@ -21,8 +22,8 @@
             position: unset;
         }
 
-        .group .title,
-        .group .subtitle {
+        .title,
+        .subtitle {
             color: #fff;
             font-size: 12px;
         }
@@ -33,20 +34,23 @@
             position: relative;
         }
 
-        barbar {
+        .group barbar {
             position: absolute;
             left: 50%;
             top: 50%;
             transform: rotate(90deg);
-            width: 200px;
-        }
-
-        .group barbar {
             width: 100px;
         }
+
+        .groupby {
+            filter: invert(100%);
+            height: 4em;
+            margin: 0 auto;
+        }
     </style>
-    <console1 id="console1" style="position: relative;"></console1>
-    <barbar id="main-bar"></barbar>
+    <span class="title">demo6901source</span>
+    <console1 id="console1"></console1>
+    <img class="groupby" src="views/groupby.jpg" />
     <div id="group1" class="group">
         <!-- <div class="item"> -->
         <!-- <div class="title">key</div> -->
@@ -57,6 +61,8 @@
     </div>
 
     <script>
+        let self = this;
+
         const compileConsole1 = new Promise(function (resolve, reject) {
             riot.compile('tags/console1.tag', function () {
                 console.debug('compiled console1');
@@ -78,33 +84,24 @@
             });
         });
 
-        let console1;
-        let mainBar;
         Promise.all([compileConsole1, compileList1, compileBarbar])
             .then(function () {
                 console1 = riot.mount('#console1')[0];
-                mainBar = riot.mount('#main-bar')[0];
                 console.debug('step mount');
             })
             .then(function () {
                 // 本流をコンソールに流す
-                demo6901source
+                subscription = demo6901source
                     .map(function (x) {
                         let line = document.createElement('div');
                         line.innerText = JSON.stringify(x);
                         return line;
                     })
                     .subscribe(function (x) { console1.add(x); });
-
-                // 本流でバーを回す。データが来る間は回して、1秒来なければ停止。
-                demo6901source
-                    .do(function (x) {
-                        mainBar.update({ value: 1 });
-                    })
-                    .debounce(1000)
-                    .subscribe(function (x) {
-                        mainBar.update({ value: 0 });
-                    });
+                self.on('unmount', function () {
+                    console.debug('dispose:', this);
+                    this.dispose();
+                }.bind(subscription));
 
                 // name で分割した支流を作る
                 let demo6901byName = demo6901source
@@ -114,7 +111,7 @@
                     })
                     .share();
 
-                demo6901byName.subscribe(function (stream) {
+                subscription = demo6901byName.subscribe(function (stream) {
                     // 支流ごとに DOM を作る
                     let parent = document.getElementById('group1');
                     let group = document.createElement('div');
@@ -137,7 +134,7 @@
 
 
                     // 支流の処理を作る
-                    stream.subscribe(function (x) {
+                    subscription = stream.subscribe(function (x) {
                         timestamp.innerText = x.timestamp.toLocaleString();
                         Rx.Observable.from(Object.keys(x.fields)).subscribe(function (key) {
                             let div = document.createElement('div');
@@ -145,9 +142,13 @@
                             tag.add(key, div);
                         });
                     });
+                    self.on('unmount', function () {
+                        console.debug('dispose:', this);
+                        this.dispose();
+                    }.bind(subscription));
 
                     // 支流でバーを回す。データが来る間は回して、1秒来なければ停止。
-                    stream
+                    subscription = stream
                         .do(function (x) {
                             bar.update({ value: 1 });
                         })
@@ -155,7 +156,15 @@
                         .subscribe(function (x) {
                             bar.update({ value: 0 });
                         });
+                    self.on('unmount', function () {
+                        console.debug('dispose:', this);
+                        this.dispose();
+                    }.bind(subscription));
                 });
+                self.on('unmount', function () {
+                    console.debug('dispose:', this);
+                    this.dispose();
+                }.bind(subscription));
             });
     </script>
 

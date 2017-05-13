@@ -41,7 +41,6 @@
     </style>
     <script>
         this.on('update', function () {
-            console.log(this)
             this.style = {
                 'animation': 'barbar ' + this.value + 's linear infinite'
             }

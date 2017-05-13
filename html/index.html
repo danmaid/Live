@@ -25,13 +25,40 @@
     <!--<header role="banner">
         <h1>ロゴ</h1>
     </header>-->
+    <article>
+        <style scoped>
+            valve {
+                width: 20em;
+                margin: 0 auto;
+                cursor: pointer;
+            }
+
+            valve * {
+                pointer-events: none;
+            }
+
+            barbar#main-bar {
+                position: unset;
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
+        <valve id="startstop" data-status="Stopped"></valve>
+        <barbar id="main-bar"></barbar>
+    </article>
     <nav role="navigation">
-        <button id="startstop">Start</button>
+        <style scoped>
+            nav span {
+                color: #fff
+            }
+        </style>
+        <span>ビュー</span>
         <a href="#debugger"><button>Debugger</button></a>
+        <a href="#debugger-dual"><button>Debugger Dual</button></a>
     </nav>
     <main role="main">
         <style scoped>
-            div {
+            .text {
                 margin: 10%;
                 padding: 1em;
                 border: 1px solid;
@@ -40,8 +67,9 @@
                 color: hsla(226, 100%, 70%, 1);
             }
         </style>
-        <div>
-            デモサイト。ビューを選択して Start を押す。データは 10 ～ 20 秒ほど流れ始めるのに時間がかかるので、待つこと。
+        <div class="text">
+            デモサイト。ビューを選択して蛇口をひねる。データは 10 ～ 20 秒ほど流れ始めるのに時間がかかるので、待つこと。
+            なお、ビュー選択前にひねってしまうと流れないのはバグ。30秒ほど待っても流れないときはもう一度ひねりなおして。
         </div>
     </main>
     <!--<aside role="complementary">
@@ -57,10 +85,16 @@
     <script src="scripts/lib/riot_compiler.min.js"></script>
     <script src="scripts/lib/route.min.js"></script>
     <script>
-        // 蛇口
-        let pauser = new Rx.Subject();
-        // 水道
-        let demo6901source = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
+        // 蛇口。とりあえず元栓として１つ。
+        const pauser = new Rx.Subject();
+        riot.compile('tags/valve.tag', function () {
+            riot.mount('valve');
+        });
+        riot.compile('tags/barbar.tag');
+
+        // 水道。デモ用に 200ms/データ の遅延を入れている。
+        // telegraf JSON format
+        const demo6901source = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
             // このイベントソースは JSON で値が送られてくるので、利用しやすいように入り口で
             // Object へ変換している。なお、各イベントに unix time が付与されてくるので、
             // これも Date 型へ変換している。
@@ -75,23 +109,48 @@
             .share()
             .pausable(pauser);
 
-        // こういうのも Rx や Riot で書いたほうが便利だけど、本デモの本質ではない。
+        // syslog
+        const demo6902source = Rx.DOM.fromEventSource('http://demo.danmaid.com/6902/sse')
+            .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
+            .share()
+            .pausable(pauser);
+        
+
+        // 蛇口をひねる処理。こういうのも Rx や Riot で書いたほうが便利だけど、本デモの本質ではない。
+        let mainBar;
         document.getElementById('startstop').addEventListener('click', function (x) {
-            if (x.target.innerText == 'Start') {
+            if (x.target.dataset.status == 'Stopped') {
                 // 開始処理
                 pauser.onNext(true);
-                x.target.innerText = 'Stop';
+                mainBar = riot.mount('#main-bar')[0];
+                x.target.dataset.status = 'Started';
             } else {
                 // 停止処理
                 pauser.onNext(false);
-                x.target.innerText = 'Start';
+                mainBar.unmount(true);
+                x.target.dataset.status = 'Stopped';
             }
         });
 
+        // 水道の水でバーを回す。データが来る間は回して、1秒来なければ停止。
+        Rx.Observable.merge([demo6901source, demo6902source])
+            .do(function (x) {
+                mainBar.update({ value: 1 });
+            })
+            .debounce(1000)
+            .subscribe(function (x) {
+                mainBar.update({ value: 0 });
+            });
 
+       let mainView = {};
         route('/debugger', function () {
             riot.compile('views/debugger.tag', function () {
-                riot.mount('main', 'debugger');
+                mainView = riot.mount('main', 'debugger');
+            });
+        });
+        route('/debugger-dual', function () {
+            riot.compile('views/debugger-dual.tag', function () {
+                mainView = riot.mount('main', 'debugger-dual');
             });
         });
         route('/');
