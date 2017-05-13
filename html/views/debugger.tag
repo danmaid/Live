@@ -30,14 +30,29 @@
         .group .item {
             width: 20%;
             padding: 0.2em;
+            position: relative;
+        }
+
+        barbar {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: rotate(90deg);
+            width: 200px;
+        }
+
+        .group barbar {
+            width: 100px;
         }
     </style>
-    <console1 id="console1"></console1>
+    <console1 id="console1" style="position: relative;"></console1>
+    <barbar id="main-bar"></barbar>
     <div id="group1" class="group">
         <!-- <div class="item"> -->
         <!-- <div class="title">key</div> -->
         <!-- <div class="subtitle">timestamp</div> -->
         <!-- <list1></list1> -->
+        <!-- <barbar></barbar> -->
         <!-- </div> -->
     </div>
 
@@ -56,12 +71,23 @@
             });
         });
 
-        Promise.all([compileConsole1, compileList1])
+        const compileBarbar = new Promise(function (resolve, reject) {
+            riot.compile('tags/barbar.tag', function () {
+                console.debug('compiled barbar');
+                resolve();
+            });
+        });
+
+        let console1;
+        let mainBar;
+        Promise.all([compileConsole1, compileList1, compileBarbar])
             .then(function () {
                 console1 = riot.mount('#console1')[0];
+                mainBar = riot.mount('#main-bar')[0];
                 console.debug('step mount');
             })
             .then(function () {
+                // 本流をコンソールに流す
                 demo6901source
                     .map(function (x) {
                         let line = document.createElement('div');
@@ -69,6 +95,16 @@
                         return line;
                     })
                     .subscribe(function (x) { console1.add(x); });
+
+                // 本流でバーを回す。データが来る間は回して、1秒来なければ停止。
+                demo6901source
+                    .do(function (x) {
+                        mainBar.update({ value: 1 });
+                    })
+                    .debounce(1000)
+                    .subscribe(function (x) {
+                        mainBar.update({ value: 0 });
+                    });
 
                 // name で分割した支流を作る
                 let demo6901byName = demo6901source
@@ -85,16 +121,20 @@
                     let title = document.createElement('div');
                     let timestamp = document.createElement('div');
                     let list = document.createElement('list1');
+                    let bar = document.createElement('barbar');
                     let tag;
                     parent.appendChild(group);
-                    group.classList.add('item');
                     group.appendChild(title);
                     group.appendChild(timestamp);
-                    timestamp.classList.add('subtitle');
                     group.appendChild(list);
+                    group.appendChild(bar);
+                    group.classList.add('item');
+                    timestamp.classList.add('subtitle');
                     title.innerText = stream.key;
                     title.classList.add('title');
                     tag = riot.mount(list)[0];
+                    bar = riot.mount(bar)[0];
+
 
                     // 支流の処理を作る
                     stream.subscribe(function (x) {
@@ -105,6 +145,16 @@
                             tag.add(key, div);
                         });
                     });
+
+                    // 支流でバーを回す。データが来る間は回して、1秒来なければ停止。
+                    stream
+                        .do(function (x) {
+                            bar.update({ value: 1 });
+                        })
+                        .debounce(1000)
+                        .subscribe(function (x) {
+                            bar.update({ value: 0 });
+                        });
                 });
             });
     </script>
