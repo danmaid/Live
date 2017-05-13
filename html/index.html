@@ -27,7 +27,7 @@
     </header>-->
     <nav role="navigation">
         <button id="startstop">Start</button>
-        <a href="#engineer"><button>Engineer</button></a>
+        <a href="#debugger"><button>Debugger</button></a>
     </nav>
     <main role="main">
         <style scoped>
@@ -61,6 +61,9 @@
         let pauser = new Rx.Subject();
         // 水道
         let demo6901source = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
+            // このイベントソースは JSON で値が送られてくるので、利用しやすいように入り口で
+            // Object へ変換している。なお、各イベントに unix time が付与されてくるので、
+            // これも Date 型へ変換している。
             .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
             .map(function (x) {
                 return JSON.parse(x);
@@ -86,9 +89,9 @@
         });
 
 
-        route('/engineer', function () {
-            riot.compile('views/engineer.tag', function () {
-                riot.mount('main', 'engineer');
+        route('/debugger', function () {
+            riot.compile('views/debugger.tag', function () {
+                riot.mount('main', 'debugger');
             });
         });
         route('/');
