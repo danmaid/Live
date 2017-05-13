@@ -9,7 +9,6 @@
     <!--<link rel="stylesheet" href="css/style.css">-->
     <!--<script src="https://use.fontawesome.com/3dd7d5f3cc.js"></script>-->
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <base target="_blank">
     <style>
         body {
             background-color: #000;
@@ -25,101 +24,24 @@
 <body>
     <!--<header role="banner">
         <h1>ロゴ</h1>
-    </header>
+    </header>-->
     <nav role="navigation">
-        グローバルナビ
-    </nav>-->
+        <button id="startstop">Start</button>
+        <a href="#engineer"><button>Engineer</button></a>
+    </nav>
     <main role="main">
         <style scoped>
-            console1 {
-                width: auto;
-                min-width: 40em;
-                max-width: 100%;
-                max-height: 20em;
-                transition: all 1s;
-                white-space: nowrap;
-                position: unset;
-            }
-
-            .group {
-                display: flex;
-                flex-wrap: wrap;
-                width: 100%;
-                position: absolute;
-            }
-
-            .group list1 {
-                position: unset;
-            }
-
-            .group .title,
-            .group .subtitle {
-                color: #fff;
-                font-size: 12px;
-            }
-
-            .group .item {
-                width: 20%;
-                padding: 0.2em;
+            div {
+                margin: 10%;
+                padding: 1em;
+                border: 1px solid;
+                background-color: hsla(226, 100%, 20%, 0.65);
+                border-color: hsla(226, 100%, 70%, 0.65);
+                color: hsla(226, 100%, 70%, 1);
             }
         </style>
-        <console1 id="console1"></console1>
-        <div id="group1" class="group">
-            <!-- <div class="item"> -->
-            <!-- <div class="title">key</div> -->
-            <!-- <div class="subtitle">timestamp</div> -->
-            <!-- <list1></list1> -->
-            <!-- </div> -->
-        </div>
-
-        <!-- debug -->
-        <style scoped>
-            .debug-view {
-                position: absolute;
-                left: calc(50vw - 4px);
-                top: 0;
-                width: calc(50vw - 4px);
-                height: 100vh;
-                visibility: hidden;
-            }
-
-            .debug-view console1 {
-                position: unset;
-                width: 100%;
-                height: 5em;
-            }
-
-            .debug-view console1 div {
-                white-space: nowrap;
-            }
-        </style>
-        <div class="debug-view">
-            <console1 id="w1"></console1>
-            <div>a</div>
-            <console1 id="w4"></console1>
-            <div>a</div>
-            <console1 id="w5"></console1>
-            <div>a</div>
-            <style scoped>
-                .debug-view .groupBy {
-                    display: flex;
-                    flex-wrap: wrap;
-                    width: 100%;
-                }
-
-                .debug-view .title {
-                    color: #fff;
-                }
-
-                .debug-view .groupBy console1 {
-                    position: unset;
-                    width: 23%;
-                    height: 10em;
-                    min-width: 10em;
-                    min-height: 5em;
-                }
-            </style>
-            <div class="groupBy"></div>
+        <div>
+            デモサイト。ビューを選択して Start を押す。データは 10 ～ 20 秒ほど流れ始めるのに時間がかかるので、待つこと。
         </div>
     </main>
     <!--<aside role="complementary">
@@ -133,121 +55,44 @@
     <script src="scripts/lib/rx.all.min.js"></script>
     <script src="scripts/lib/rx.dom.min.js"></script>
     <script src="scripts/lib/riot_compiler.min.js"></script>
+    <script src="scripts/lib/route.min.js"></script>
     <script>
-        var console1;
-        var debugViewW1;
-        var kernelTime;
-        var kernelList;
-        var kList;
-
-        const compileConsole1 = new Promise(function (resolve, reject) {
-            riot.compile('tags/console1.tag', function () {
-                console.debug('compiled console1');
-                resolve();
-            });
-        });
-
-        const compileList1 = new Promise(function (resolve, reject) {
-            riot.compile('tags/list1.tag', function () {
-                console.debug('compiled list1');
-                resolve();
-            });
-        });
-
-        Promise.all([compileConsole1, compileList1])
-            .then(function () {
-                debugViewW1 = riot.mount('.debug-view #w1')[0];
-                console1 = riot.mount('#console1')[0];
-                kernelTime = document.getElementById('kernel-time');
-                kernelList = riot.mount('#kernel-list')[0];
-                kList = riot.mount('#k-list')[0];
-                console.debug('step mount');
+        // 蛇口
+        let pauser = new Rx.Subject();
+        // 水道
+        let demo6901source = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
+            .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
+            .map(function (x) {
+                return JSON.parse(x);
             })
-            .then(function () {
-                let demo6901source = Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
-                    .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
-                    .do(function (x) {
-                        let line = document.createElement('div');
-                        line.innerText = x;
-                        debugViewW1.add(line);
-                    })
-                    .map(function (x) {
-                        return JSON.parse(x);
-                    })
-                    .map(function (x) {
-                        x.timestamp = new Date(x.timestamp * 1000);
-                        return x;
-                    })
-                    .share();
+            .map(function (x) {
+                x.timestamp = new Date(x.timestamp * 1000);
+                return x;
+            })
+            .share()
+            .pausable(pauser);
 
-                // 蛇口
-                demo6901source
-                    .map(function (x) {
-                        let line = document.createElement('div');
-                        line.innerText = JSON.stringify(x);
-                        return line;
-                    })
-                    .subscribe(function (x) { console1.add(x); });
+        // こういうのも Rx や Riot で書いたほうが便利だけど、本デモの本質ではない。
+        document.getElementById('startstop').addEventListener('click', function (x) {
+            if (x.target.innerText == 'Start') {
+                // 開始処理
+                pauser.onNext(true);
+                x.target.innerText = 'Stop';
+            } else {
+                // 停止処理
+                pauser.onNext(false);
+                x.target.innerText = 'Start';
+            }
+        });
 
-                let demo6901byName = demo6901source
-                    .groupBy(function (x) { return x.name })
-                    .do(function (x) {
-                        console.debug(x);
-                    })
-                    .share();
 
-                demo6901byName.subscribe(function (stream) {
-                    let parent = document.getElementById('group1');
-                    let group = document.createElement('div');
-                    let title = document.createElement('div');
-                    let timestamp = document.createElement('div');
-                    let list = document.createElement('list1');
-                    let tag;
-                    parent.appendChild(group);
-                    group.classList.add('item');
-                    group.appendChild(title);
-                    group.appendChild(timestamp);
-                    timestamp.classList.add('subtitle');
-                    group.appendChild(list);
-                    Promise.resolve()
-                        .then(function () {
-                            title.innerText = stream.key;
-                            title.classList.add('title');
-                            tag = riot.mount(list)[0];
-                        })
-                        .then(function () {
-                            stream.subscribe(function (x) {
-                                timestamp.innerText = x.timestamp.toLocaleString();
-                                Rx.Observable.from(Object.keys(x.fields)).subscribe(function(key) {
-                                    let div = document.createElement('div');
-                                    div.innerText = key + ':' + x.fields[key];
-                                    tag.add(key, div);
-                                });
-                            });
-                        });
-                });
-
-                demo6901byName.subscribe(function (stream) {
-                    var debugView = document.querySelector('.debug-view .groupBy');
-                    var title = document.createElement('div');
-                    title.innerText = stream.key;
-                    title.classList.add('title');
-                    debugView.appendChild(title);
-                    var child = debugView.appendChild(document.createElement('console1'));
-                    child.id = stream.key;
-                    var tag = riot.mount(child)[0];
-                    stream
-                        .map(function (x) { return x.fields })
-                        .subscribe(function (x) {
-                            Object.keys(x).forEach(function (key) {
-                                let tag = document.createElement('div');
-                                tag.innerText = key + ':' + x[key];
-                                this.add(tag);
-                            }.bind(tag));
-                        });
-                });
-
+        route('/engineer', function () {
+            riot.compile('views/engineer.tag', function () {
+                riot.mount('main', 'engineer');
             });
+        });
+        route('/');
+        route.start();
     </script>
 </body>
 
