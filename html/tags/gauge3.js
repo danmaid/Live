@@ -3,7 +3,7 @@ riot.tag2('gauge3', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http:/
         this.min = opts.dataMin ? opts.dataMin : 0;
         this.value = opts.dataValue ? opts.dataValue : 0;
         this.style = {
-            transform: 'rotate(0.' + this.value / (this.max - this.min) * 8000 + 'turn)'
+            transform: 'rotate(' + this.value / (this.max - this.min) * 0.8 + 'turn)'
         }
 
         this.on('update', function () {
@@ -11,7 +11,7 @@ riot.tag2('gauge3', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http:/
             if (opts.dataMin != null) this.min = opts.dataMin;
             if (opts.dataValue != null) this.value = opts.dataValue;
             this.style = {
-                transform: 'rotate(0.' + this.value / (this.max - this.min) * 8000 + 'turn)'
+                transform: 'rotate(' + this.value / (this.max - this.min) * 0.8 + 'turn)'
             }
 
         })

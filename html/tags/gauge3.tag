@@ -471,7 +471,7 @@
         this.min = opts.dataMin ? opts.dataMin : 0;
         this.value = opts.dataValue ? opts.dataValue : 0;
         this.style = {
-            transform: 'rotate(0.' + this.value / (this.max - this.min) * 8000 + 'turn)' // 0.0 turn ～ 0.8turn
+            transform: 'rotate(' + this.value / (this.max - this.min) * 0.8 + 'turn)' // 0.0 turn ～ 0.8turn
         }
         // console.debug(this);
 
@@ -480,7 +480,7 @@
             if (opts.dataMin != null) this.min = opts.dataMin;
             if (opts.dataValue != null) this.value = opts.dataValue;
             this.style = {
-                transform: 'rotate(0.' + this.value / (this.max - this.min) * 8000 + 'turn)' // 0.0 turn ～ 0.8turn
+                transform: 'rotate(' + this.value / (this.max - this.min) * 0.8 + 'turn)' // 0.0 turn ～ 0.8turn
             }
             // console.debug('update:', this);
         })
