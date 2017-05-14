@@ -55,6 +55,7 @@
         <span>ビュー</span>
         <a href="#debugger"><button>Debugger</button></a>
         <a href="#debugger-dual"><button>Debugger Dual</button></a>
+        <a href="#operator"><button>Operator</button></a>
     </nav>
     <main role="main">
         <style scoped>
@@ -68,8 +69,7 @@
             }
         </style>
         <div class="text">
-            デモサイト。ビューを選択して蛇口をひねる。データは 10 ～ 20 秒ほど流れ始めるのに時間がかかるので、待つこと。
-            なお、ビュー選択前にひねってしまうと流れないのはバグ。30秒ほど待っても流れないときはもう一度ひねりなおして。
+            デモサイト。ビューを選択して蛇口をひねる。データは 10 ～ 20 秒ほど流れ始めるのに時間がかかるので、待つこと。 なお、ビュー選択前にひねってしまうと流れないのはバグ。30秒ほど待っても流れないときはもう一度ひねりなおして。
         </div>
     </main>
     <!--<aside role="complementary">
@@ -114,7 +114,7 @@
             .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
             .share()
             .pausable(pauser);
-        
+
 
         // 蛇口をひねる処理。こういうのも Rx や Riot で書いたほうが便利だけど、本デモの本質ではない。
         let mainBar;
@@ -142,7 +142,7 @@
                 mainBar.update({ value: 0 });
             });
 
-       let mainView = {};
+        let mainView = {};
         route('/debugger', function () {
             riot.compile('views/debugger.tag', function () {
                 mainView = riot.mount('main', 'debugger');
@@ -151,6 +151,11 @@
         route('/debugger-dual', function () {
             riot.compile('views/debugger-dual.tag', function () {
                 mainView = riot.mount('main', 'debugger-dual');
+            });
+        });
+        route('/operator', function () {
+            riot.compile('views/operator.tag', function () {
+                mainView = riot.mount('main', 'operator');
             });
         });
         route('/');
