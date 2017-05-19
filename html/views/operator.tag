@@ -3,6 +3,7 @@
     <gauge3 class="compile" data-max="100" data-min="0" data-value={ memory }>Memory</gauge3>
 
     <div class="explanation">
+        <h2>解説</h2>
         <p>表示用タグ。最大値、最小値、現在値、タイトルを指定。</p>
         <pre><code class="html">&lt;gauge3 data-max="100" data-min="0" data-value={ cpu }&gt;CPU&lt;/gauge3&gt;
 &lt;gauge3 data-max="100" data-min="0" data-value={ memory }&gt;Memory&lt;/gauge3&gt;</code></pre>
@@ -16,15 +17,19 @@
         }
 
         .explanation {
-            position: absolute;
+            /*position: absolute;
             right:0;
-            top: 0;
+            top: 0;*/
             margin: 0.5em;
             padding: 0.5em;
             border: 1px solid;
             background-color: hsla(226, 100%, 20%, 0.65);
             border-color: hsla(226, 100%, 70%, 0.65);
             color: hsla(226, 100%, 70%, 1);
+        }
+
+        .explanation h2 {
+            font-size: 1.2rem;
         }
 
         .explanation .html, .explanation .javascript {
