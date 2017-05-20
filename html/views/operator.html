@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<body>
+    <gauge3 id="mem" data-value="50">memory</gauge3>
+
+    <!-- 外部ライブラリ読み込み(CDNでもローカルでも可) -->
+    <script src="http://demo.danmaid.com/scripts/lib/rx.all.min.js"></script>
+    <script src="http://demo.danmaid.com/scripts/lib/rx.dom.min.js"></script>
+    <script src="http://demo.danmaid.com/scripts/lib/riot_compiler.min.js"></script>
+
+    <!-- カスタムタグ定義読み込み -->
+    <script src="http://demo.danmaid.com/tags/gauge3.js"></script>
+
+    <script>
+        // カスタムタグのマウント
+        riot.mount('*');
+
+        // ストリーム定義
+        Rx.DOM.fromEventSource('http://demo.danmaid.com/6901/sse')
+            .map(function (x) {
+                // データ変換(JSON -> Object)
+                return JSON.parse(x);
+            })
+            .filter(function (x) {
+                // メモリ使用率(%)のみを対象
+                return x.name == 'mem' && x.fields.used_percent;
+            })
+            .subscribe(function (x) {
+                // タグの属性を更新
+                let mem = document.getElementById('mem');
+                mem.dataset.value = x.fields.used_percent;
+
+                // カスタムタグへ更新通知
+                riot.update();
+            });
+    </script>
+</body>
+
+</html>

@@ -1,12 +1,14 @@
 <operator>
-    <gauge3 class="compile" data-max="100" data-min="0" data-value={ cpu }>CPU</gauge3>
-    <gauge3 class="compile" data-max="100" data-min="0" data-value={ memory }>Memory</gauge3>
+    <gauge3 class="compile" data-max="100" data-min="0" data-value="{ cpu }">CPU</gauge3>
+    <gauge3 class="compile" data-max="100" data-min="0" data-value="{ memory }">Memory</gauge3>
 
+    <a href="views/operator.html"><button>sample</button></a>
+    <a href="views/operator.zip"><button><i class="fa fa-download" aria-hidden="true"></i>download</button></a>
     <div class="explanation">
         <h2>解説</h2>
         <p>表示用タグ。最大値、最小値、現在値、タイトルを指定。</p>
-        <pre><code class="html">&lt;gauge3 data-max="100" data-min="0" data-value={ cpu }&gt;CPU&lt;/gauge3&gt;
-&lt;gauge3 data-max="100" data-min="0" data-value={ memory }&gt;Memory&lt;/gauge3&gt;</code></pre>
+        <pre><code class="html">&lt;gauge3 data-max="100" data-min="0" data-value="\{ cpu \}"&gt;CPU&lt;/gauge3&gt;
+&lt;gauge3 data-max="100" data-min="0" data-value="\{ memory \}"&gt;Memory&lt;/gauge3&gt;</code></pre>
         <p>ストリームからの値を元に、現在値を更新する。</p>
         <pre><code id="code1" class="javascript"></code></pre>
     </div>
@@ -17,9 +19,6 @@
         }
 
         .explanation {
-            /*position: absolute;
-            right:0;
-            top: 0;*/
             margin: 0.5em;
             padding: 0.5em;
             border: 1px solid;
@@ -78,12 +77,12 @@
         this.on('mount', function () {
             contents = 'demo6901source\n' +
                 '  .filter(function (x) {\n' + 
-                '  return \'cpu\' == x.name && 0 <= x.fields.usage_user && 0 <= x.fields.usage_system\n' +
-                '})\n' + 
-                '.subscribe(function (x) {\n' +
-                '  self.cpu = x.fields.usage_user + x.fields.usage_system;\n' +
-                '  self.update();\n' +
-                '});'
+                '    return \'cpu\' == x.name && 0 <= x.fields.usage_user && 0 <= x.fields.usage_system\n' +
+                '  })\n' + 
+                '  .subscribe(function (x) {\n' +
+                '    self.cpu = x.fields.usage_user + x.fields.usage_system;\n' +
+                '    self.update();\n' +
+                '  });'
             document.getElementById('code1').innerHTML = contents;
             hljs.initHighlighting();
         });
