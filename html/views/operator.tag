@@ -3,6 +3,7 @@
     <gauge3 class="compile" data-max="100" data-min="0" data-value="{ memory }">Memory</gauge3>
 
     <a href="views/operator.html"><button>sample</button></a>
+    <a href="views/operator-source.html"><button>source</button></a>
     <a href="views/operator.zip"><button><i class="fa fa-download" aria-hidden="true"></i>download</button></a>
     <div class="explanation">
         <h2>解説</h2>
