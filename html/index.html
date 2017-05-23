@@ -58,6 +58,7 @@
         <a href="#debugger"><button>Debugger</button></a>
         <a href="#debugger-dual"><button>Debugger Dual</button></a>
         <a href="#operator"><button>Operator</button></a>
+        <a href="#se"><button>SE</button></a>
     </nav>
     <main role="main">
         <style scoped>
@@ -123,6 +124,24 @@
             .share()
             .pausable(pauser);
 
+        // nginx errorlog
+        const demoErrorlogSource = Rx.DOM.fromEventSource('http://demo.danmaid.com/errorlog/sse')
+            .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
+            .share()
+            .pausable(pauser);
+
+        // nginx accesslog
+        const demoAccesslogSource = Rx.DOM.fromEventSource('http://demo.danmaid.com/accesslog/sse')
+            .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
+            .share()
+            .pausable(pauser);
+
+        // tcpdump
+        const demoTcpdumpSource = Rx.DOM.fromEventSource('http://demo.danmaid.com/tcpdump/sse')
+            .map(function (x) { return Rx.Observable.return(x).delay(200); }).concatAll()
+            .share()
+            .pausable(pauser);
+
 
         // 蛇口をひねる処理。こういうのも Rx や Riot で書いたほうが便利だけど、本デモの本質ではない。
         let mainBar;
@@ -141,7 +160,7 @@
         });
 
         // 水道の水でバーを回す。データが来る間は回して、1秒来なければ停止。
-        Rx.Observable.merge([demo6901source, demo6902source])
+        Rx.Observable.merge([demo6901source, demo6902source, demoErrorlogSource, demoAccesslogSource, demoTcpdumpSource])
             .do(function (x) {
                 mainBar.update({ value: 1 });
             })
@@ -164,6 +183,11 @@
         route('/operator', function () {
             riot.compile('views/operator.tag', function () {
                 mainView = riot.mount('main', 'operator');
+            });
+        });
+        route('/se', function () {
+            riot.compile('views/se.tag', function () {
+                mainView = riot.mount('main', 'se');
             });
         });
         route('/');

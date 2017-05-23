@@ -15,6 +15,7 @@
             color: hsla(226, 100%, 70%, 1);
             padding: 0.2em;
             overflow: hidden;
+            white-space: nowrap;
         }
         
          :scope * {
