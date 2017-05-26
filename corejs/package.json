@@ -1,0 +1,16 @@
+{
+  "name": "livecorejs",
+  "version": "0.0.1",
+  "description": "Live core by javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "danmaid.com",
+  "license": "MIT",
+  "dependencies": {
+    "argv": "0.0.2",
+    "express": "^4.15.3",
+    "sse": "0.0.6"
+  }
+}
